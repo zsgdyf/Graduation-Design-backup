@@ -1,6 +1,6 @@
 # persondemo
 
-> yes
+> 
 
 ## Build Setup
 
