@@ -47,7 +47,7 @@ export default {
         data: '&name=' + this.user.name + '&password=' + this.user.password
       }).then(response => {
         console.log(response)
-        this.$router.push({ path: '/' })
+        this.$router.push({ path: '/users' })
       }).catch(error => {
         console.log(error)
       })

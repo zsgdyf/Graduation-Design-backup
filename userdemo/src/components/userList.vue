@@ -15,27 +15,6 @@
         prop='password'
         label='Password'
       ></el-table-column>
-      <!-- <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Password</th>
-        <th>Age</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      <tr
-        v-for='item in personData'
-        :key='item.id'
-      >
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.password}}</td>
-        <td>{{item.age}}</td>
-        <td></td>
-        <td @click="avoidDelete(item.id)">
-          <button>删除</button>
-        </td>
-      </tr> -->
     </el-table>
   </div>
 </template>
@@ -58,36 +37,16 @@ export default {
         console.log(error)
       })
     },
-    avoidDelete (id) {
-      var deleteConfirm = confirm('是否删除')
-      if (deleteConfirm) {
-        axios({
-          method: 'post',
-          url: 'http://localhost:8080/delete',
-          data: '&id=' + id
-        }).then(response => {
-          console.log(response)
-          this.getData()
-        }).catch(error => {
-          console.log(error)
-        })
-      }
+    created () {
+      this.getData()
     }
-  },
-  created () {
-    this.getData()
   }
 }
 </script>
 
 <style scoped>
-table {
-  border-collapse: collapse;
-  margin: auto;
-  font-size: 24px;
-}
-td,
-th {
-  border: 1px solid #000000;
+.el-table {
+  width: 60%;
+  margin: 0 auto;
 }
 </style>
