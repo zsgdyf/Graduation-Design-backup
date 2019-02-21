@@ -25,7 +25,6 @@
       </el-form>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -36,7 +35,8 @@ export default {
       user: {
         name: '',
         password: ''
-      }
+      },
+      activeIndex: '1'
     }
   },
   methods: {
