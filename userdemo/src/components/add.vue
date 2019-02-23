@@ -1,8 +1,6 @@
 <template>
   <div>
-    <el-menu :default-active="activeIndex" mode="horizontal">
-        <el-menu-item index="1">新增用户</el-menu-item>
-    </el-menu>
+    <NavMenu></NavMenu>
     <div class="loginForm">
       <el-form
         ref="form"
@@ -29,7 +27,11 @@
 
 <script>
 import axios from 'axios'
+import NavMenu from './NavMenu.vue'
 export default {
+  components: {
+    NavMenu
+  },
   data () {
     return {
       user: {
@@ -62,8 +64,8 @@ export default {
   justify-content: center;
 }
 .el-form {
-    width: 480px;
-    margin-top: 50px;
+  width: 480px;
+  margin-top: 50px;
 }
 tr {
   border: 1px solid #000;
