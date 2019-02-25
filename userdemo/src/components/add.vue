@@ -16,6 +16,7 @@
         <el-form-item>
           <el-button>取消</el-button>
           <el-button
+            native-type='submit'
             type="primary"
             @click="addUser"
           >立即添加</el-button>

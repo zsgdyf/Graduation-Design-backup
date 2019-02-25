@@ -15,9 +15,13 @@
         label='密码'
       ></el-table-column>
       <el-table-column label="操作">
-        <el-button>
-          删除
-        </el-button>
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="danger"
+            @click="deleteConfirm(scope.row.id)"
+          >删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -44,8 +48,45 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    deleteConfirm (index) {
+      this.$confirm('是否删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        if (this.$confirm) {
+          this.deleted(index)
+        }
+      })
+        .then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消删除'
+          })
+        })
+    },
+    deleted (index) {
+      console.log(index)
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/delete',
+        data: '&id=' + index
+      }).then(response => {
+        console.log(response)
+        this.getData()
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
+
   created () {
     this.getData()
   }
