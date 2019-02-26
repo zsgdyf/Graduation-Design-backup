@@ -1,25 +1,74 @@
 <template>
   <div>
     <NavMenu></NavMenu>
-    <div class="loginForm">
+    <div
+      class="loginForm"
+      v-show="showLogin"
+    >
       <el-form
         ref="form"
         v-model="user"
-        label-width="80px"
+        label-width="100px"
       >
-        <el-form-item label="用户名：">
+        <el-form-item
+          label="用户名："
+          prop="userName"
+        >
           <el-input v-model="user.name"></el-input>
         </el-form-item>
-        <el-form-item label="密码：">
+        <el-form-item
+          label="密码："
+          prop="userPassword"
+        >
           <el-input v-model="user.password"></el-input>
         </el-form-item>
+        <p @click="toRegister">还没有账号？点此注册</p>
         <el-form-item>
           <el-button>取消</el-button>
           <el-button
             native-type='submit'
             type="primary"
             @click="addUser"
-          >立即添加</el-button>
+          >登录</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div
+      class="registerForm"
+      v-show="showRegister"
+    >
+      <el-form
+        ref="form"
+        v-model="user"
+        :rules="rules"
+        label-width="100px"
+      >
+        <el-form-item
+          label="用户名："
+          prop="userName"
+        >
+          <el-input v-model="user.name"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="密码："
+          prop="userPassword"
+        >
+          <el-input v-model="user.password"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="确认密码："
+          prop="checkPassword"
+        >
+          <el-input v-model="user.password2"></el-input>
+        </el-form-item>
+        <p @click="toLogin">已有账号，点此登录</p>
+        <el-form-item>
+          <el-button>取消</el-button>
+          <el-button
+            native-type='submit'
+            type="primary"
+            @click="addUser"
+          >注册</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -34,12 +83,36 @@ export default {
     NavMenu
   },
   data () {
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
+      } else if (value !== this.user.password) {
+        callback(new Error('两次输入密码不一致'))
+      } else {
+        callback()
+      }
+    }
     return {
       user: {
         name: '',
         password: ''
       },
-      activeIndex: '1'
+      rules: {
+        userName: [{
+          required: true, message: '用户名不能为空', trigger: 'blur'
+        }],
+        userPassword: [{
+          required: true, message: '请输入密码', trigger: 'blur'
+        }],
+        checkPassword: [{
+          required: true, message: '请再次输入密码', trigger: 'blur'
+        },
+        {
+          validator: validatePass2, trigger: 'blur'
+        }]
+      },
+      showLogin: true,
+      showRegister: false
     }
   },
   methods: {
@@ -54,19 +127,31 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    toRegister () {
+      this.showLogin = false
+      this.showRegister = true
+    },
+    toLogin () {
+      this.showLogin = true
+      this.showRegister = false
     }
   }
 }
 </script>
 
 <style scoped>
-.loginForm {
+.loginForm,
+.registerForm {
   display: flex;
   justify-content: center;
 }
 .el-form {
   width: 480px;
   margin-top: 50px;
+}
+p {
+  margin-left: 80px;
 }
 tr {
   border: 1px solid #000;
