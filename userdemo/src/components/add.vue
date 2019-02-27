@@ -19,13 +19,13 @@
             label="用户名："
             prop="userName"
           >
-            <el-input v-model="user.name"></el-input>
+            <el-input v-model="user.logName"></el-input>
           </el-form-item>
           <el-form-item
             label="密码："
             prop="userPassword"
           >
-            <el-input v-model="user.password"></el-input>
+            <el-input v-model="user.logPassword"></el-input>
           </el-form-item>
           <p @click="toRegister">还没有账号？点此注册</p>
           <el-form-item>
@@ -139,12 +139,17 @@ export default {
         url: 'http://localhost:8080/insert',
         data: '&name=' + this.user.name + '&password=' + this.user.password
       }).then(response => {
-        console.log(response)
-        this.$router.push({ path: '/users' })
-      }).then(this.$message({
-        message: '注册成功！',
-        type: 'success'
-      }))
+        if (response.data.message === '用户名已被使用！') {
+          this.$message.error(response.data.message)
+          console.log(response.data.message)
+        } else {
+          this.$message({
+            message: '注册成功！',
+            type: 'success'
+          })
+          this.$router.push({ path: '/users' })
+        }
+      })
         .catch(error => {
           console.log(error)
         })
@@ -188,8 +193,5 @@ export default {
 }
 p {
   margin-left: 80px;
-}
-tr {
-  border: 1px solid #000;
 }
 </style>
