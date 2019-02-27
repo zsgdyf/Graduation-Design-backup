@@ -1,84 +1,96 @@
 <template>
   <div>
     <NavMenu></NavMenu>
-    <div
-      class="loginForm"
-      v-show="showLogin"
+    <el-row
+      type="flex"
+      class="row-bg"
+      justify="center"
     >
-      <el-form
-        ref="form"
-        v-model="user"
-        label-width="100px"
+      <el-card
+        class="loginCard loginForm"
+        v-show="showLogin"
       >
-        <el-form-item
-          label="用户名："
-          prop="userName"
+        <el-form
+          ref="form"
+          v-model="user"
+          label-width="100px"
         >
-          <el-input v-model="user.name"></el-input>
-        </el-form-item>
-        <el-form-item
-          label="密码："
-          prop="userPassword"
-        >
-          <el-input v-model="user.password"></el-input>
-        </el-form-item>
-        <p @click="toRegister">还没有账号？点此注册</p>
-        <el-form-item>
-          <el-button>取消</el-button>
-          <el-button
-            native-type='submit'
-            type="primary"
-            @click="addUser"
-          >登录</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
-    <div
-      class="registerForm"
-      v-show="showRegister"
+          <el-form-item
+            label="用户名："
+            prop="userName"
+          >
+            <el-input v-model="user.name"></el-input>
+          </el-form-item>
+          <el-form-item
+            label="密码："
+            prop="userPassword"
+          >
+            <el-input v-model="user.password"></el-input>
+          </el-form-item>
+          <p @click="toRegister">还没有账号？点此注册</p>
+          <el-form-item>
+            <el-button>取消</el-button>
+            <el-button
+              native-type='submit'
+              type="primary"
+              @click="addUser"
+            >登录</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </el-row>
+    <el-row
+      type="flex"
+      class="row-bg"
+      justify="center"
     >
-      <el-form
-        ref="regForm"
-        :model="user"
-        status-icon
-        :rules="rules"
-        label-width="100px"
+      <el-card
+        class="registerCard registerForm"
+        v-show="showRegister"
       >
-        <el-form-item
-          label="用户名："
-          prop="name"
+        <el-form
+          ref="regForm"
+          :model="user"
+          status-icon
+          :rules="rules"
+          label-width="100px"
         >
-          <el-input v-model="user.name"></el-input>
-        </el-form-item>
-        <el-form-item
-          label="密码："
-          prop="password"
-        >
-          <el-input
-            v-model="user.password"
-            type="password"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          label="确认密码："
-          prop="checkPassword"
-        >
-          <el-input
-            v-model="user.checkPassword"
-            type="password"
-          ></el-input>
-        </el-form-item>
-        <p @click="toLogin">已有账号，点此登录</p>
-        <el-form-item>
-          <el-button @click="resetForm('regForm')">重置</el-button>
-          <el-button
-            native-type='submit'
-            type="primary"
-            @click="submitForm('regForm')"
-          >注册</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+          <el-form-item
+            label="用户名："
+            prop="name"
+          >
+            <el-input v-model="user.name"></el-input>
+          </el-form-item>
+          <el-form-item
+            label="密码："
+            prop="password"
+          >
+            <el-input
+              v-model="user.password"
+              type="password"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="确认密码："
+            prop="checkPassword"
+          >
+            <el-input
+              v-model="user.checkPassword"
+              type="password"
+            ></el-input>
+          </el-form-item>
+          <p @click="toLogin">已有账号，点此登录</p>
+          <el-form-item>
+            <el-button @click="resetForm('regForm')">重置</el-button>
+            <el-button
+              native-type='submit'
+              type="primary"
+              @click="submitForm('regForm')"
+            >注册</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </el-row>
   </div>
 </template>
 
@@ -102,7 +114,8 @@ export default {
     return {
       user: {
         name: '',
-        password: ''
+        password: '',
+        checkPassword: ''
       },
       rules: {
         name: [{
@@ -128,9 +141,13 @@ export default {
       }).then(response => {
         console.log(response)
         this.$router.push({ path: '/users' })
-      }).catch(error => {
-        console.log(error)
-      })
+      }).then(this.$message({
+        message: '注册成功！',
+        type: 'success'
+      }))
+        .catch(error => {
+          console.log(error)
+        })
     },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
@@ -158,14 +175,16 @@ export default {
 </script>
 
 <style scoped>
-.loginForm,
+.loginCard,
 .registerForm {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  width: 500px;
+  margin-top: 50px;
 }
 .el-form {
-  width: 480px;
-  margin-top: 50px;
+  width: 460px;
+  margin: 20px auto;
 }
 p {
   margin-left: 80px;
