@@ -38,36 +38,43 @@
       v-show="showRegister"
     >
       <el-form
-        ref="form"
-        v-model="user"
+        ref="regForm"
+        :model="user"
+        status-icon
         :rules="rules"
         label-width="100px"
       >
         <el-form-item
           label="用户名："
-          prop="userName"
+          prop="name"
         >
           <el-input v-model="user.name"></el-input>
         </el-form-item>
         <el-form-item
           label="密码："
-          prop="userPassword"
+          prop="password"
         >
-          <el-input v-model="user.password"></el-input>
+          <el-input
+            v-model="user.password"
+            type="password"
+          ></el-input>
         </el-form-item>
         <el-form-item
           label="确认密码："
           prop="checkPassword"
         >
-          <el-input v-model="user.password2"></el-input>
+          <el-input
+            v-model="user.checkPassword"
+            type="password"
+          ></el-input>
         </el-form-item>
         <p @click="toLogin">已有账号，点此登录</p>
         <el-form-item>
-          <el-button>取消</el-button>
+          <el-button @click="resetForm('regForm')">重置</el-button>
           <el-button
             native-type='submit'
             type="primary"
-            @click="addUser"
+            @click="submitForm('regForm')"
           >注册</el-button>
         </el-form-item>
       </el-form>
@@ -98,17 +105,14 @@ export default {
         password: ''
       },
       rules: {
-        userName: [{
+        name: [{
           required: true, message: '用户名不能为空', trigger: 'blur'
         }],
-        userPassword: [{
+        password: [{
           required: true, message: '请输入密码', trigger: 'blur'
         }],
         checkPassword: [{
-          required: true, message: '请再次输入密码', trigger: 'blur'
-        },
-        {
-          validator: validatePass2, trigger: 'blur'
+          validator: validatePass2, trigger: 'change'
         }]
       },
       showLogin: true,
@@ -127,6 +131,19 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.addUser()
+        } else {
+          console.log('fail submit!!!')
+          return false
+        }
+      })
+    },
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
     },
     toRegister () {
       this.showLogin = false
