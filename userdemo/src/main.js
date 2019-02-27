@@ -9,6 +9,8 @@ import axios from 'axios'
 
 Vue.use(ElementUI)
 
+Vue.config.devtools = true
+
 Vue.config.productionTip = false
 axios.defaults.withCredential = true
 
