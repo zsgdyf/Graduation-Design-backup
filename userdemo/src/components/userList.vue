@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavMenu></NavMenu>
-    <el-table :data="userData">
+    <el-table :data="tempList">
       <el-table-column
         prop='id'
         label='#'
@@ -24,6 +24,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @size-change="sizeChange"
+      @current-change="currentChange"
+      :current-page="currentPage"
+      :page-sizes="[5, 10, 20, 50, 100]"
+      :page-size="pageSize"
+      :total="total"
+      layout="total, sizes, prev, pager, next, jumper"
+    ></el-pagination>
   </div>
 </template>
 
@@ -37,13 +46,25 @@ export default {
   },
   data () {
     return {
-      userData: ['']
+      userData: [],
+      total: 0,
+      currentPage: 1,
+      pageSize: 10,
+      tempList: []
     }
   },
   methods: {
     getData () {
       axios.get('http://localhost:8080/selectAll').then(response => {
         this.userData = response.data
+        this.total = this.userData.length
+        if (this.total > this.pageSize) {
+          for (let i = 0; i < this.pageSize; ++i) {
+            this.tempList.push(this.userData[i])
+          }
+        } else {
+          this.tempList = this.userData
+        }
         console.log(response)
       }).catch(error => {
         console.log(error)
@@ -54,11 +75,12 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(() => {
-        if (this.$confirm) {
-          this.deleted(index)
-        }
       })
+        .then(() => {
+          if (this.$confirm) {
+            this.deleted(index)
+          }
+        })
         .then(() => {
           this.$message({
             type: 'success',
@@ -80,13 +102,31 @@ export default {
         data: '&id=' + index
       }).then(response => {
         console.log(response)
+        this.tempList = [] // 删除一个数据之后将 tempList 重新制空，不然会出现两个重复的
         this.getData()
       }).catch(error => {
         console.log(error)
       })
+    },
+    sizeChange (pageSize) {
+      this.pageSize = pageSize
+      this.currentChange(this.currentPage)
+    },
+    currentChange (currentPage) {
+      this.currentPage = currentPage
+      this.currentPageChange(this.userData, currentPage)
+    },
+    currentPageChange (list, currentPage) {
+      let from = (currentPage - 1) * this.pageSize
+      let to = currentPage * this.pageSize
+      this.tempList = []
+      for (; from < to; ++from) {
+        if (list[from]) {
+          this.tempList.push(list[from])
+        }
+      }
     }
   },
-
   created () {
     this.getData()
   }
