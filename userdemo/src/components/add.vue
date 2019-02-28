@@ -141,8 +141,19 @@ export default {
         url: 'http://localhost:8080/login',
         data: '&name=' + this.user.logName + '&password=' + this.user.logPassword
       }).then(response => {
-        console.log(response.data)
-        // this.$router.push({ path: '/users' })
+        if (response.data.message === '用户不存在！') {
+          this.$message.error(response.data.message)
+          console.log(response.data)
+        } else if (response.data.message === '用户密码错误！') {
+          this.$message.error(response.data.message)
+          console.log(response.data)
+        } else {
+          this.$message({
+            message: '欢迎回来!  ' + response.data.user.name,
+            type: 'success'
+          })
+          this.$router.push({ path: '/users' })
+        }
       }).catch(error => {
         console.log(error)
       })

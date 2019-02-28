@@ -17,7 +17,6 @@ import io.github.zsgdyf.User.Mapper.UserMapper;
 public class UserAction {
 	@Autowired
 	private UserMapper UserMapper;
-	private AuthenticationService AuthenticationService;
 
 	@RequestMapping(value = "/insert")
 	public Object insert(User User) {

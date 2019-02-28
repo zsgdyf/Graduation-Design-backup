@@ -136,6 +136,7 @@ export default {
 <style scoped>
 .el-table {
   width: 600px;
+  height: 520px;
   margin: 0 auto;
 }
 </style>
