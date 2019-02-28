@@ -17,23 +17,23 @@
         >
           <el-form-item
             label="用户名："
-            prop="userName"
+            prop="logName"
           >
             <el-input v-model="user.logName"></el-input>
           </el-form-item>
           <el-form-item
             label="密码："
-            prop="userPassword"
+            prop="logPassword"
           >
             <el-input v-model="user.logPassword"></el-input>
           </el-form-item>
           <p @click="toRegister">还没有账号？点此注册</p>
           <el-form-item>
-            <el-button>取消</el-button>
+            <el-button @click="resetForm('regForm')">重置</el-button>
             <el-button
               native-type='submit'
               type="primary"
-              @click="addUser"
+              @click="login"
             >登录</el-button>
           </el-form-item>
         </el-form>
@@ -115,7 +115,9 @@ export default {
       user: {
         name: '',
         password: '',
-        checkPassword: ''
+        checkPassword: '',
+        logName: '',
+        logPassword: ''
       },
       rules: {
         name: [{
@@ -133,6 +135,18 @@ export default {
     }
   },
   methods: {
+    login () {
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/login',
+        data: '&name=' + this.user.logName + '&password=' + this.user.logPassword
+      }).then(response => {
+        console.log(response.data)
+        // this.$router.push({ path: '/users' })
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     addUser () {
       axios({
         method: 'post',
