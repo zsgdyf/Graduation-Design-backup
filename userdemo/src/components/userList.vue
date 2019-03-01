@@ -37,7 +37,6 @@
 </template>
 
 <script>
-// Italic comment test
 import axios from 'axios'
 import NavMenu from './NavMenu.vue'
 export default {
@@ -55,20 +54,22 @@ export default {
   },
   methods: {
     getData () {
-      axios.get('http://localhost:8080/selectAll').then(response => {
-        this.userData = response.data
-        this.total = this.userData.length
-        if (this.total > this.pageSize) {
-          for (let i = 0; i < this.pageSize; ++i) {
-            this.tempList.push(this.userData[i])
+      axios.get('http://localhost:8080/selectAll')
+        .then(response => {
+          this.userData = response.data
+          this.total = this.userData.length
+          if (this.total > this.pageSize) {
+            for (let i = 0; i < this.pageSize; ++i) {
+              this.tempList.push(this.userData[i])
+            }
+          } else {
+            this.tempList = this.userData
           }
-        } else {
-          this.tempList = this.userData
-        }
-        console.log(response)
-      }).catch(error => {
-        console.log(error)
-      })
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     deleteConfirm (index) {
       this.$confirm('是否删除？', '提示', {
@@ -102,7 +103,8 @@ export default {
         data: '&id=' + index
       }).then(response => {
         console.log(response)
-        this.tempList = [] // 删除一个数据之后将 tempList 重新制空，不然会出现两个重复的
+        // 删除一个数据之后将 tempList 重新制空，不然会出现两个重复的
+        this.tempList = []
         this.getData()
       }).catch(error => {
         console.log(error)
@@ -136,7 +138,7 @@ export default {
 <style scoped>
 .el-table {
   width: 600px;
-  height: 520px;
+  /* height: 520px; */
   margin: 0 auto;
 }
 </style>

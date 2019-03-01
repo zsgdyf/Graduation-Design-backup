@@ -65,7 +65,7 @@ public class UserAction {
 		if (userInDatabase == null) {
 			jsonObject.put("message", "用户不存在！");
 		} else if (!comparePassword(user, userInDatabase)) {
-			jsonObject.put("message", "用户密码错误！");
+			jsonObject.put("message", "密码错误！");
 		} else {
 			String token = AuthenticationService.getToken(userInDatabase);
 			jsonObject.put("token", token);

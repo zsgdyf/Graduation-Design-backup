@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavMenu></NavMenu>
+    <!-- 卡片居中 登录部分 -->
     <el-row
       type="flex"
       class="row-bg"
@@ -11,25 +12,29 @@
         v-show="showLogin"
       >
         <el-form
-          ref="form"
-          v-model="user"
+          ref="logForm"
+          :model="user"
           label-width="100px"
         >
           <el-form-item
             label="用户名："
             prop="logName"
           >
-            <el-input v-model="user.logName"></el-input>
+            <el-input v-model="user.logName" clearable></el-input>
           </el-form-item>
           <el-form-item
             label="密码："
             prop="logPassword"
           >
-            <el-input v-model="user.logPassword"></el-input>
+            <el-input
+              v-model="user.logPassword"
+              type="password"
+            >
+            </el-input>
           </el-form-item>
           <p @click="toRegister">还没有账号？点此注册</p>
           <el-form-item>
-            <el-button @click="resetForm('regForm')">重置</el-button>
+            <el-button @click="resetForm('logForm')">重置</el-button>
             <el-button
               native-type='submit'
               type="primary"
@@ -39,6 +44,7 @@
         </el-form>
       </el-card>
     </el-row>
+    <!-- 注册部分 -->
     <el-row
       type="flex"
       class="row-bg"
@@ -130,6 +136,7 @@ export default {
           validator: validatePass2, trigger: 'change'
         }]
       },
+      // 默认先显示登录部分
       showLogin: true,
       showRegister: false
     }
@@ -144,14 +151,16 @@ export default {
         if (response.data.message === '用户不存在！') {
           this.$message.error(response.data.message)
           console.log(response.data)
-        } else if (response.data.message === '用户密码错误！') {
+        } else if (response.data.message === '密码错误！') {
           this.$message.error(response.data.message)
           console.log(response.data)
         } else {
           this.$message({
-            message: '欢迎回来!  ' + response.data.user.name,
+            message: '欢迎回来！  ' + response.data.user.name,
             type: 'success'
           })
+          // 将返回的 token 存储到本地
+          window.localStorage['token'] = JSON.stringify(response.data.token)
           this.$router.push({ path: '/users' })
         }
       }).catch(error => {
