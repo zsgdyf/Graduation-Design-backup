@@ -16,6 +16,7 @@
       ></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
+          <!-- 删除操作需要获取该行的 id 值 -->
           <el-button
             size="mini"
             type="danger"
@@ -103,7 +104,7 @@ export default {
         data: '&id=' + index
       }).then(response => {
         console.log(response)
-        // 删除一个数据之后将 tempList 重新制空，不然会出现两个重复的
+        // 删除一个数据之后将 tempList 重新置空，不然会出现两个重复的
         this.tempList = []
         this.getData()
       }).catch(error => {
