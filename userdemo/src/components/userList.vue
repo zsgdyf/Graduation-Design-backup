@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="userList">
     <NavMenu></NavMenu>
     <el-table :data="tempList">
       <el-table-column
@@ -137,6 +137,10 @@ export default {
 </script>
 
 <style scoped>
+#userList {
+  width: 1140px;
+  margin: 0 auto;
+}
 .el-table {
   width: 600px;
   /* height: 520px; */

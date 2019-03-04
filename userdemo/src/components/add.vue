@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="add">
     <NavMenu></NavMenu>
     <!-- 卡片居中 登录部分 -->
     <el-row
@@ -20,7 +20,10 @@
             label="用户名："
             prop="logName"
           >
-            <el-input v-model="user.logName" clearable></el-input>
+            <el-input
+              v-model="user.logName"
+              clearable
+            ></el-input>
           </el-form-item>
           <el-form-item
             label="密码："
@@ -214,6 +217,10 @@ export default {
 </script>
 
 <style scoped>
+#add {
+  width: 1140px;
+  margin: 0 auto;
+}
 .loginCard,
 .registerForm {
   /* display: flex;
@@ -227,5 +234,6 @@ export default {
 }
 p {
   margin-left: 80px;
+  cursor: pointer;
 }
 </style>
