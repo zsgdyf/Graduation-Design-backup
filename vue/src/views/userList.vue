@@ -39,7 +39,7 @@
 
 <script>
 import axios from 'axios'
-import NavMenu from './NavMenu.vue'
+import NavMenu from '@/components/NavMenu.vue'
 export default {
   components: {
     NavMenu
@@ -140,6 +140,7 @@ export default {
 #userList {
   width: 1140px;
   margin: 0 auto;
+  text-align: center;
 }
 .el-table {
   width: 600px;

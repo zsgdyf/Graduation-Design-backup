@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import NavMenu from './NavMenu.vue'
+import NavMenu from '@/components/NavMenu.vue'
 export default {
   components: {
     NavMenu

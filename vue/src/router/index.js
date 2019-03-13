@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import UserList from '@/components/userList'
-import Add from '@/components/add'
-import Index from '@/components/index'
+import UserList from '@/views/userList'
+import Add from '@/views/add'
+import Index from '@/views/index'
+import MyNotes from '@/views/myNotes'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,9 @@ const routes = [{
 }, {
   path: '/',
   redirect: '/index'
+}, {
+  path: '/myNotes',
+  component: MyNotes
 }]
 export default new VueRouter({
   routes
