@@ -1,6 +1,6 @@
 <template>
   <div id="add">
-    <NavMenu></NavMenu>
+    <NavMenu :userName="user.name"></NavMenu>
     <!-- 卡片居中 登录部分 -->
     <el-row
       type="flex"
@@ -164,6 +164,7 @@ export default {
           })
           // 将返回的 token 存储到本地
           window.localStorage['token'] = JSON.stringify(response.data.token)
+          window.localStorage['userName'] = response.data.user.name
           this.$router.push({ path: '/users' })
         }
       }).catch(error => {

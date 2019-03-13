@@ -11,7 +11,14 @@
         class="row-bg"
         justify="end"
       >
-        <el-menu-item index="/add">登录 / 注册</el-menu-item>
+        <el-menu-item
+          index="/add"
+          v-show="unlogin"
+        >登录 / 注册</el-menu-item>
+        <el-menu-item
+          index="/myNotes"
+          v-show="logined"
+        >欢迎您，{{userName}}</el-menu-item>
         <el-menu-item index="/users">用户列表</el-menu-item>
       </el-row>
     </el-menu>
@@ -21,11 +28,22 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      logined: false,
+      unlogin: true,
+      userName: ''
+    }
   },
   computed: {
     activeIndex () {
       return this.$route.path
+    }
+  },
+  mounted () {
+    if (localStorage.userName) {
+      this.userName = localStorage.userName
+      this.logined = true
+      this.unlogin = false
     }
   }
 }
