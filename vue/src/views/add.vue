@@ -11,6 +11,7 @@
         class="loginCard loginForm"
         v-show="showLogin"
       >
+        <h2>登录</h2>
         <el-form
           ref="logForm"
           :model="user"
@@ -35,16 +36,29 @@
             >
             </el-input>
           </el-form-item>
-          <p @click="toRegister">还没有账号？点此注册</p>
           <el-form-item>
-            <el-button @click="resetForm('logForm')">重置</el-button>
-            <el-button
-              native-type='submit'
-              type="primary"
-              @click="login"
-            >登录</el-button>
+            <el-row
+              type="flex"
+              class="row-bg"
+              justify="space-between"
+            >
+              <el-button @click="resetForm('logForm')">清空</el-button>
+              <el-button
+                native-type='submit'
+                type="primary"
+                @click="login"
+              >登录</el-button>
+            </el-row>
           </el-form-item>
         </el-form>
+        <el-row
+          type="flex"
+          class="row-bg"
+          justify="space-between"
+        >
+          <span @click="toReset">忘记密码？</span>
+          <span @click="toRegister">还没有账号？点此注册</span>
+        </el-row>
       </el-card>
     </el-row>
     <!-- 注册部分 -->
@@ -57,6 +71,7 @@
         class="registerCard registerForm"
         v-show="showRegister"
       >
+        <h2>注册</h2>
         <el-form
           ref="regForm"
           :model="user"
@@ -88,16 +103,82 @@
               type="password"
             ></el-input>
           </el-form-item>
-          <p @click="toLogin">已有账号，点此登录</p>
           <el-form-item>
-            <el-button @click="resetForm('regForm')">重置</el-button>
-            <el-button
-              native-type='submit'
-              type="primary"
-              @click="submitForm('regForm')"
-            >注册</el-button>
+            <el-row
+              type="flex"
+              class="row-bg"
+              justify="space-between"
+            >
+              <el-button @click="resetForm('regForm')">清空</el-button>
+              <el-button
+                native-type='submit'
+                type="primary"
+                @click="submitForm('regForm')"
+              >注册</el-button>
+            </el-row>
           </el-form-item>
         </el-form>
+        <p @click="toLogin">已有账号，点此登录</p>
+      </el-card>
+    </el-row>
+    <!-- 重置密码 -->
+    <el-row
+      type="flex"
+      class="row-bg"
+      justify="center"
+    >
+      <el-card
+        class="resetCard resetForm"
+        v-show="showReset"
+      >
+        <h2>重置密码</h2>
+        <el-form
+          ref="resetForm"
+          :model="user"
+          status-icon
+          :rules="rules"
+          label-width="100px"
+        >
+          <el-form-item
+            label="用户名："
+            prop="name"
+          >
+            <el-input v-model="user.name"></el-input>
+          </el-form-item>
+          <el-form-item
+            label="密码："
+            prop="password"
+          >
+            <el-input
+              v-model="user.password"
+              type="password"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="确认密码："
+            prop="checkPassword"
+          >
+            <el-input
+              v-model="user.checkPassword"
+              type="password"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-row
+              type="flex"
+              class="row-bg"
+              justify="space-between"
+            >
+              <el-button @click="resetForm('resetForm')">清空输入</el-button>
+              <el-button
+                native-type='submit'
+                type="primary"
+                @click="submitForm('resetForm')"
+              >确认重置</el-button>
+            </el-row>
+          </el-form-item>
+        </el-form>
+        <p @click="toLogin"  class="returnToLogin">返回登录</p>
       </el-card>
     </el-row>
   </div>
@@ -141,7 +222,8 @@ export default {
       },
       // 默认先显示登录部分
       showLogin: true,
-      showRegister: false
+      showRegister: false,
+      showReset: false
     }
   },
   methods: {
@@ -206,11 +288,18 @@ export default {
       this.$refs[formName].resetFields()
     },
     toRegister () {
-      this.showLogin = false
       this.showRegister = true
+      this.showLogin = false
+      this.showReset = false
     },
     toLogin () {
       this.showLogin = true
+      this.showRegister = false
+      this.showReset = false
+    },
+    toReset () {
+      this.showReset = true
+      this.showLogin = false
       this.showRegister = false
     }
   }
@@ -224,7 +313,8 @@ export default {
   text-align: center;
 }
 .loginCard,
-.registerForm {
+.registerCard,
+.resetCard {
   /* display: flex;
   justify-content: center; */
   width: 500px;
@@ -232,10 +322,22 @@ export default {
 }
 .el-form {
   width: 460px;
-  margin: 20px auto;
+  margin: 10px auto;
+}
+span {
+  text-align: left;
+  margin-left: 10px;
+  cursor: pointer;
+  color: #606266;
+  text-decoration-line: underline;
 }
 p {
-  margin-left: 80px;
+  text-align: right;
   cursor: pointer;
+  color: #606266;
+  text-decoration-line: underline;
+}
+p.returnToLogin {
+  text-align: left;
 }
 </style>
