@@ -138,12 +138,12 @@ export default {
 
 <style scoped>
 #userList {
-  width: 1140px;
+  width: 80%;
   margin: 0 auto;
   text-align: center;
 }
 .el-table {
-  width: 600px;
+  width: 48rem;
   /* height: 520px; */
   margin: 0 auto;
 }

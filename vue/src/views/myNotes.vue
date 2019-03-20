@@ -55,13 +55,13 @@ export default {
 
 <style scoped>
 #myNotes {
-  width: 1140px;
+  width: 80%;
   margin: 0 auto;
 }
 #content {
-    margin-top: 50px;
+    margin-top: 2rem;
 }
 .el-timeline {
-  width: 900px;
+  width: 80%;
 }
 </style>

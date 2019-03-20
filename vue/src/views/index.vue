@@ -42,13 +42,13 @@ export default {
 </script>
 <style scoped>
 #index {
-    width: 1140px;
+    width: 80%;
     margin: 0 auto;
 }
 .el-card {
-  margin: 10px;
+  margin: 0.8rem;
   text-align: left;
-  height: 220px;
+  height: 15rem;
 }
 h1 {
   font-size: 16px;

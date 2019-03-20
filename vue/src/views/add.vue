@@ -308,7 +308,7 @@ export default {
 
 <style scoped>
 #add {
-  width: 1140px;
+  width: 80%;
   margin: 0 auto;
   text-align: center;
 }
@@ -317,16 +317,16 @@ export default {
 .resetCard {
   /* display: flex;
   justify-content: center; */
-  width: 500px;
-  margin-top: 50px;
+  /* width: 35rem; */
+  margin-top: 5rem;
 }
 .el-form {
-  width: 460px;
-  margin: 10px auto;
+  width: 30rem;
+  margin: 1rem auto;
 }
 span {
   text-align: left;
-  margin-left: 10px;
+  margin-left: 1rem;
   cursor: pointer;
   color: #606266;
   text-decoration-line: underline;

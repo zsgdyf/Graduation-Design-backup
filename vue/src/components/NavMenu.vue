@@ -50,7 +50,7 @@ export default {
 </script>
 <style scoped>
 #NavMenu {
-  width: 1140px;
+  width: 100%;
   margin: 0 auto;
 }
 :focus {

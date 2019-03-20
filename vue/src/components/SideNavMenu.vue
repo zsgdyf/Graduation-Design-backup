@@ -30,6 +30,6 @@ export default {
 
 <style scoped>
 #SideNavMenu {
-  width: 240px;
+  width: 10rem;
 }
 </style>
