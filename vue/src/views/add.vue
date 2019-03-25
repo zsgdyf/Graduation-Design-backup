@@ -250,7 +250,7 @@ export default {
           // 将返回的 token 存储到本地
           window.localStorage['token'] = JSON.stringify(response.data.token)
           window.localStorage['userName'] = response.data.user.name
-          this.$router.push({ path: '/users' })
+          this.$router.push({ path: '/' })
         }
       }).catch(error => {
         console.log(error)
@@ -270,7 +270,8 @@ export default {
             message: '注册成功！',
             type: 'success'
           })
-          this.$router.push({ path: '/users' })
+          this.showLogin = true
+          // this.$router.push({ path: '/users' })
         }
       })
         .catch(error => {
