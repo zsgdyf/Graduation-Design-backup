@@ -8,12 +8,19 @@
         justify="center"
       >
         <SideNavMenu></SideNavMenu>
-        <markdown-editor
-          v-model="content"
-          ref="markdownEditor"
-          preview-class="markdown-body"
-          :highlight="true"
-        ></markdown-editor>
+        <div class="editor-container">
+          <el-input
+            v-model="article.title"
+            placeholder="请输入笔记标题"
+          ></el-input>
+          <markdown-editor
+            v-model="content"
+            ref="markdownEditor"
+            preview-class="markdown-body"
+            :highlight="true"
+          ></markdown-editor>
+          <el-button type="primary">发布</el-button>
+        </div>
       </el-row>
     </div>
   </div>
@@ -33,9 +40,17 @@ export default {
   },
   data () {
     return {
+      article: {
+        title: ''
+      },
       content: '',
       configs: {
-        spellChecker: false
+        spellChecker: false,
+        autosave: {
+          enable: true,
+          delay: 1000,
+          uniqueId: 'autoSave'
+        }
       }
     }
   },
@@ -59,8 +74,10 @@ export default {
 #editor {
   width: 80%;
   margin: 0 auto;
+  margin-bottom: 1rem;
+  height: 100%;
 }
-.markdown-editor {
+.editor-container {
   width: 80%;
   padding-left: 40px;
 }
