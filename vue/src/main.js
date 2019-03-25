@@ -7,6 +7,14 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 
+// import AV from 'leancloud-storage'
+// const APP_ID = 'xxxxx'
+// const APP_KEY = 'xxxxxx'
+// AV.init({
+//   appId: APP_ID,
+//   appKey: APP_KEY
+// })
+
 Vue.use(ElementUI)
 
 Vue.config.devtools = true
@@ -18,6 +26,8 @@ axios.defaults.withCredential = true
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
