@@ -13,25 +13,25 @@ import io.github.zsgdyf.User.User;
 
 @Mapper
 public interface UserMapper {
-	@Insert("insert into User (name, password) values(#{name},#{password})")
+	@Insert("insert into user (name, password) values(#{name},#{password})")
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-	void insert(User User);
+	void insert(User user);
 
-	@Update("update User set name=#{name},password=#{password} where id=#{id}")
-	Integer update(User User);
+	@Update("update user set name=#{name},password=#{password} where id=#{id}")
+	Integer update(User user);
 
-	@Delete("delete from User where id=#{id}")
+	@Delete("delete from user where id=#{id}")
 	Integer delete(Integer id);
 
-	@Select("select * from User")
+	@Select("select * from user")
 	List<User> selectAll();
 
-	@Select("select * from User where id=#{id}")
+	@Select("select * from user where id=#{id}")
 	User selectById(Integer id);
 
-	@Select("select * from User where name=#{name}")
+	@Select("select * from user where name=#{name}")
 	User selectByName(String Name);
 
-	@Select("select * from User where id=#{id} and password=#{password}")
+	@Select("select * from user where id=#{id} and password=#{password}")
 	User login(Integer id, String password);
 }

@@ -58,7 +58,7 @@ public class UserAction {
 		return user.getPassword().equals(userInDatabase.getPassword());
 	}
 
-	@RequestMapping("/login")
+	@RequestMapping(value = "/login")
 	public Object login(User user) {
 		User userInDatabase = selectByName(user.getName());
 		JSONObject jsonObject = new JSONObject();
