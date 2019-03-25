@@ -59,7 +59,7 @@ export default {
   margin: 0 auto;
 }
 #content {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 .el-timeline {
   width: 80%;

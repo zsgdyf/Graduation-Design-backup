@@ -10,6 +10,7 @@
       <el-card
         class="loginCard loginForm"
         v-show="showLogin"
+        shadow="never"
       >
         <h2>登录</h2>
         <el-form
@@ -70,6 +71,7 @@
       <el-card
         class="registerCard registerForm"
         v-show="showRegister"
+        shadow="never"
       >
         <h2>注册</h2>
         <el-form
@@ -130,6 +132,7 @@
       <el-card
         class="resetCard resetForm"
         v-show="showReset"
+        shadow="never"
       >
         <h2>重置密码</h2>
         <el-form
@@ -318,7 +321,8 @@ export default {
   /* display: flex;
   justify-content: center; */
   /* width: 35rem; */
-  margin-top: 5rem;
+  margin-top: 1rem;
+  border: none;
 }
 .el-form {
   width: 30rem;
@@ -326,7 +330,6 @@ export default {
 }
 span {
   text-align: left;
-  margin-left: 1rem;
   cursor: pointer;
   color: #606266;
   text-decoration-line: underline;
