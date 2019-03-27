@@ -7,7 +7,7 @@
 
 将前端发送的 JSON 格式的字符串解析为 Java Bean 对象：
 
-使用 Alibaba 的 `fastjson` 库
+使用 Alibaba 的 `fastjson` 库。
 
 ```java
 String article = "{"xxx": "abcd"}";
@@ -16,9 +16,9 @@ Article article2 = JSON.parseObject(article,Article.class);
 
 - [x] 笔记列表展示
 
-将用户名通过 `GET` 发送给后台进行数据库查询
+将用户名通过 `GET` 发送给后台进行数据库查询作者为该用户名的所有文章。
 
-（element ui 的时间轴没法按时间戳排序……坑）
+（element ui 的时间轴没法按时间戳排序……坑。）
 
 - [ ] 用户信息显示
 - [ ] 笔记详情页面
