@@ -28,7 +28,7 @@ public class ArticleAction {
 	}
 	
 	@RequestMapping(value = "/myNotes")
-	public List<Article> select(){
-		return articleMapper.selectAll();
+	public List<Article> select(String author){
+		return articleMapper.selectAll(author);
 	}
 }

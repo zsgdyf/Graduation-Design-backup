@@ -23,8 +23,8 @@ public interface ArticleMapper {
 	@Delete("delete from article where id=#{id}")
 	Integer delete(Integer id);
 
-	@Select("select * from article")
-	List<Article> selectAll();
+	@Select("select * from article where author=#{author}")
+	List<Article> selectAll(String author);
 
 	@Update("update article set "
 			+ "title=#{title},content=#{content}, content_md=#{content_md} "

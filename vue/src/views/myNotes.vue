@@ -14,6 +14,7 @@
             :key="index"
             :timestamp="article.create_date"
             placement="top"
+            :reverse="true"
           >
             <el-card>
               <h4>{{article.title}}</h4>
@@ -37,18 +38,20 @@ export default {
   },
   data () {
     return {
-      articles: []
+      articles: [],
+      author: ''
     }
   },
   methods: {
     getData () {
-      axios.get('http://localhost:8080/myNotes').then(response => {
+      axios.get('http://localhost:8080/myNotes?author=' + this.author).then(response => {
         this.articles = response.data
         console.log(this.articles)
       })
     }
   },
   created () {
+    this.author = localStorage.userName
     this.getData()
   }
 }
