@@ -10,6 +10,7 @@
 使用 Alibaba 的 `fastjson` 库
 
 ```java
+String article = "{"xxx": "abcd"}";
 Article article2 = JSON.parseObject(article,Article.class);
 ```
 
