@@ -23,7 +23,7 @@ public class ArticleAction {
 		Article article2 = JSON.parseObject(article,Article.class);
 		articleMapper.insert(article2);
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("message", "提交成功！");
+		jsonObject.put("message", "发布成功！");
 		return jsonObject;
 	}
 	

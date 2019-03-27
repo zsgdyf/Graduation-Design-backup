@@ -21,7 +21,7 @@
           ></markdown-editor>
           <el-button
             type="primary"
-            @click="publish"
+            @click="publishConfirm"
           >发布</el-button>
         </div>
       </el-row>
@@ -63,6 +63,22 @@ export default {
     }
   },
   methods: {
+    publishConfirm () {
+      this.$confirm('确认发布吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        if (this.$confirm) {
+          this.publish()
+        }
+      }).catch(() => {
+        this.$message({
+          message: '取消发布',
+          type: 'info'
+        })
+      })
+    },
     publish () {
       this.getArticleData()
       axios({
@@ -104,6 +120,19 @@ export default {
   mounted () {
     console.log(this.simplemde)
     // this.simplemde.togglePreview()
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$confirm('当前正在编辑的笔记未保存，确认离开？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(() => {
+      if (this.$confirm) {
+        next()
+      } else {
+        next(false)
+      }
+    })
   }
 }
 </script>

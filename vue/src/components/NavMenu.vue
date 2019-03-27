@@ -1,7 +1,7 @@
 <template>
   <div id="NavMenu">
     <el-menu
-      :default-active="activeIndex"
+      :default-active="activeIndexNav"
       mode="horizontal"
       router
     >
@@ -35,7 +35,7 @@ export default {
     }
   },
   computed: {
-    activeIndex () {
+    activeIndexNav () {
       return this.$route.path
     }
   },
