@@ -13,8 +13,10 @@ import io.github.zsgdyf.Article.Article;;
 
 @Mapper
 public interface ArticleMapper {
-	@Insert("insert into article (title,content,content_md,author,create_time) "
-			+ "values (#{title},#{content},#{content_md},#{author},#{create_time})")
+	@Insert("insert into article "
+			+ "(title,content,content_md,author,create_time,create_date) "
+			+ "values "
+			+ "(#{title},#{content},#{content_md},#{author},#{create_time},#{create_date})")
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
 	void insert(Article article);
 

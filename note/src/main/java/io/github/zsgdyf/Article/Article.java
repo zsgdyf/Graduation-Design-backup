@@ -7,6 +7,7 @@ public class Article{
 	private String content_md;
 	private String author;
 	private String create_time;
+	private String create_date;
 	/**
 	 * @return the id
 	 */
@@ -78,5 +79,17 @@ public class Article{
 	 */
 	public void setCreate_time(String create_time) {
 		this.create_time = create_time;
+	}
+	/**
+	 * @return the create_date
+	 */
+	public String getCreate_date() {
+		return create_date;
+	}
+	/**
+	 * @param create_date the create_date to set
+	 */
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
 	}
 }

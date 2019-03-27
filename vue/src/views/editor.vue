@@ -48,7 +48,8 @@ export default {
         title: '',
         content: '',
         author: '',
-        creat_time: ''
+        creat_time: '',
+        creat_date: ''
       },
       content_md: '',
       configs: {
@@ -72,7 +73,8 @@ export default {
           content_md: this.content_md,
           content: this.article.content,
           author: this.article.author,
-          create_time: this.article.creat_time
+          create_time: this.article.creat_time,
+          create_date: this.article.creat_date
         }
       }).then(response => {
         if (response.data.message === '提交成功！') {
@@ -90,7 +92,8 @@ export default {
       this.article.author = localStorage.userName
       this.article.content = this.simplemde.markdown(this.content_md)
       var currentDate = new Date()
-      this.article.creat_time = currentDate.toLocaleDateString()
+      this.article.creat_time = currentDate.toLocaleString('zh', { hour12: false })
+      this.article.creat_date = currentDate.toLocaleDateString()
     }
   },
   computed: {
