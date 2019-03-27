@@ -4,6 +4,15 @@
 ### To-Do List：
 
 - [x] 文章提交
+
+将前端发送的 JSON 格式的字符串解析为 Java Bean 对象：
+
+使用 Alibaba 的 `fastjson` 库
+
+```java
+Article article2 = JSON.parseObject(article,Article.class);
+```
+
 - [x] 笔记列表展示
 
 （element ui 的时间轴没法按时间戳排序……坑）
