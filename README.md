@@ -16,6 +16,9 @@ Article article2 = JSON.parseObject(article,Article.class);
 
 - [x] 笔记列表展示
 
+将用户名通过 `GET` 发送给后台进行数据库查询
+
 （element ui 的时间轴没法按时间戳排序……坑）
 
 - [ ] 用户信息显示
+- [ ] 笔记详情页面
