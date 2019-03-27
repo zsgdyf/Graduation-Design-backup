@@ -244,7 +244,7 @@ export default {
           console.log(response.data)
         } else {
           this.$message({
-            message: '欢迎回来！  ' + response.data.user.name,
+            message: '欢迎回来！' + response.data.user.name,
             type: 'success'
           })
           // 将返回的 token 存储到本地

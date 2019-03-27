@@ -4,8 +4,9 @@ public class Article{
 	private Integer id;
 	private String title;
 	private String content;
+	private String content_md;
 	private String author;
-	private String creat_time;
+	private String create_time;
 	/**
 	 * @return the id
 	 */
@@ -43,6 +44,18 @@ public class Article{
 		this.content = content;
 	}
 	/**
+	 * @return the content_md
+	 */
+	public String getContent_md() {
+		return content_md;
+	}
+	/**
+	 * @param content_md the content_md to set
+	 */
+	public void setContent_md(String content_md) {
+		this.content_md = content_md;
+	}
+	/**
 	 * @return the author
 	 */
 	public String getAuthor() {
@@ -57,13 +70,13 @@ public class Article{
 	/**
 	 * @return the creat_time
 	 */
-	public String getCreat_time() {
-		return creat_time;
+	public String getCreate_time() {
+		return create_time;
 	}
 	/**
 	 * @param creat_time the creat_time to set
 	 */
-	public void setCreat_time(String creat_time) {
-		this.creat_time = creat_time;
+	public void setCreate_time(String create_time) {
+		this.create_time = create_time;
 	}
 }

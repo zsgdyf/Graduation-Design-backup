@@ -14,12 +14,15 @@
             placeholder="请输入笔记标题"
           ></el-input>
           <markdown-editor
-            v-model="content"
+            v-model="content_md"
             ref="markdownEditor"
             preview-class="markdown-body"
             :highlight="true"
           ></markdown-editor>
-          <el-button type="primary">发布</el-button>
+          <el-button
+            type="primary"
+            @click="publish"
+          >发布</el-button>
         </div>
       </el-row>
     </div>
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import markdownEditor from 'vue-simplemde/src/markdown-editor'
 import NavMenu from '@/components/NavMenu.vue'
 import SideNavMenu from '@/components/SideNavMenu.vue'
@@ -41,9 +45,12 @@ export default {
   data () {
     return {
       article: {
-        title: ''
+        title: '',
+        content: '',
+        author: '',
+        creat_time: ''
       },
-      content: '',
+      content_md: '',
       configs: {
         spellChecker: false,
         autosave: {
@@ -52,6 +59,38 @@ export default {
           uniqueId: 'autoSave'
         }
       }
+    }
+  },
+  methods: {
+    publish () {
+      this.getArticleData()
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/newArticle',
+        data: {
+          title: this.article.title,
+          content_md: this.content_md,
+          content: this.article.content,
+          author: this.article.author,
+          create_time: this.article.creat_time
+        }
+      }).then(response => {
+        if (response.data.message === '提交成功！') {
+          this.$message({
+            message: response.data.message,
+            type: 'success'
+          })
+        }
+        console.log(response)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    getArticleData () {
+      this.article.author = localStorage.userName
+      this.article.content = this.simplemde.markdown(this.content_md)
+      var currentDate = new Date()
+      this.article.creat_time = currentDate.toLocaleDateString()
     }
   },
   computed: {

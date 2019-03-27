@@ -13,8 +13,8 @@ import io.github.zsgdyf.Article.Article;;
 
 @Mapper
 public interface ArticleMapper {
-	@Insert("insert into article (title,content,author,creat_time) "
-			+ "value (#{title},#{content},#{author},#{creat_time})")
+	@Insert("insert into article (title,content,content_md,author,create_time) "
+			+ "values (#{title},#{content},#{content_md},#{author},#{create_time})")
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
 	void insert(Article article);
 
@@ -24,6 +24,8 @@ public interface ArticleMapper {
 	@Select("select * from article")
 	List<Article> selectAll();
 
-	@Update("update article set title=#{title},content=#{content}, where id=#{id}")
+	@Update("update article set "
+			+ "title=#{title},content=#{content}, content_md=#{content_md} "
+			+ "where id=#{id}")
 	Integer update(Integer id);
 }
