@@ -35,5 +35,10 @@ toArticles (articleId) {
       })
     }
 ```
+文章页面接收参数并发送 `GET` 请求
+
+```javascript
+axios.get('http://localhost:8080/articles?id=' + this.$route.query.id)
+```
 
 使用 [vue-markdown](https://github.com/miaolz123/vue-markdown)来渲染文章
