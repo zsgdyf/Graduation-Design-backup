@@ -20,6 +20,8 @@ Article article2 = JSON.parseObject(article,Article.class);
 
 （element ui 的时间轴没法按时间戳排序……。）
 
+使用 `index` 排序，参考官方文档的例子增加一个正序和倒序切换的开关。
+
 - [ ] 用户信息显示
 - [x] 笔记详情页面
 
@@ -41,4 +43,4 @@ toArticles (articleId) {
 axios.get('http://localhost:8080/articles?id=' + this.$route.query.id)
 ```
 
-使用 [vue-markdown](https://github.com/miaolz123/vue-markdown)来渲染文章
+使用 [vue-markdown](https://github.com/miaolz123/vue-markdown) 来渲染文章
