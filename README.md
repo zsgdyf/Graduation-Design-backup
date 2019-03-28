@@ -21,4 +21,19 @@ Article article2 = JSON.parseObject(article,Article.class);
 （element ui 的时间轴没法按时间戳排序……。）
 
 - [ ] 用户信息显示
-- [ ] 笔记详情页面
+- [x] 笔记详情页面
+
+通过这种方法给文章页面传递文章 ID 参数：
+
+```javascript
+toArticles (articleId) {
+      this.$router.push({
+        path: '/articles',
+        query: {
+          id: articleId
+        }
+      })
+    }
+```
+
+使用 [vue-markdown](https://github.com/miaolz123/vue-markdown)来渲染文章
