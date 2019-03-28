@@ -16,18 +16,21 @@
 <script>
 export default {
   data () {
-    return {}
-  },
-  computed: {
-    activeIndexSideNav () {
-      return this.$route.path
+    return {
+      activeIndexSideNav: this.$route.path
     }
   },
   methods: {
+    defaultIndex () {
+      this.activeIndexSideNav = this.$route.path
+    },
     logout () {
       window.localStorage.clear()
       this.$router.push({ path: '/' })
     }
+  },
+  mounted () {
+    this.defaultIndex()
   }
 }
 </script>

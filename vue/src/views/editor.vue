@@ -90,7 +90,8 @@ export default {
           content: this.article.content,
           author: this.article.author,
           create_time: this.article.creat_time,
-          create_date: this.article.creat_date
+          create_date: this.article.creat_date,
+          state: 'published'
         }
       }).then(response => {
         if (response.data.message === '提交成功！') {

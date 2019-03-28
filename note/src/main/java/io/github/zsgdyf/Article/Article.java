@@ -8,6 +8,7 @@ public class Article{
 	private String author;
 	private String create_time;
 	private String create_date;
+	private String state;
 	/**
 	 * @return the id
 	 */
@@ -91,5 +92,17 @@ public class Article{
 	 */
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
+	}
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
 	}
 }

@@ -20,15 +20,20 @@ public class ArticleAction {
 
 	@RequestMapping(value = "/newArticle")
 	public Object insert(@RequestBody String article) {
-		Article article2 = JSON.parseObject(article,Article.class);
+		Article article2 = JSON.parseObject(article, Article.class);
 		articleMapper.insert(article2);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("message", "发布成功！");
 		return jsonObject;
 	}
-	
+
 	@RequestMapping(value = "/myNotes")
-	public List<Article> select(String author){
+	public List<Article> select(String author) {
 		return articleMapper.selectAll(author);
+	}
+
+	@RequestMapping(value = "/articles")
+	public Article selectOne(Integer id) {
+		return articleMapper.selectOne(id);
 	}
 }

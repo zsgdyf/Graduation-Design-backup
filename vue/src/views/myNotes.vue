@@ -17,7 +17,7 @@
             :reverse="true"
           >
             <el-card>
-              <h4>{{article.title}}</h4>
+              <h4 @click="toArticles(article.id)">{{article.id}}# {{article.title}}</h4>
               <p>{{article.author}} 提交于 {{article.create_time}}</p>
             </el-card>
           </el-timeline-item>
@@ -48,6 +48,14 @@ export default {
         this.articles = response.data
         console.log(this.articles)
       })
+    },
+    toArticles (articleId) {
+      this.$router.push({
+        path: '/articles',
+        query: {
+          id: articleId
+        }
+      })
     }
   },
   created () {
@@ -67,5 +75,8 @@ export default {
 }
 .el-timeline {
   width: 80%;
+}
+h4 {
+  cursor: pointer;
 }
 </style>

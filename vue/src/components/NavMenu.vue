@@ -31,12 +31,13 @@ export default {
     return {
       logined: false,
       unlogin: true,
-      userName: ''
+      userName: '',
+      activeIndexNav: this.$route.path
     }
   },
-  computed: {
-    activeIndexNav () {
-      return this.$route.path
+  methods: {
+    defaultIndex () {
+      this.activeIndexSideNav = this.$route.path
     }
   },
   mounted () {

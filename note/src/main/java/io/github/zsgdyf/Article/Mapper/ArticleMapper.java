@@ -14,17 +14,20 @@ import io.github.zsgdyf.Article.Article;;
 @Mapper
 public interface ArticleMapper {
 	@Insert("insert into article "
-			+ "(title,content,content_md,author,create_time,create_date) "
+			+ "(title,content,content_md,author,create_time,create_date,state) "
 			+ "values "
-			+ "(#{title},#{content},#{content_md},#{author},#{create_time},#{create_date})")
+			+ "(#{title},#{content},#{content_md},#{author},#{create_time},#{create_date},#{state})")
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
 	void insert(Article article);
 
 	@Delete("delete from article where id=#{id}")
 	Integer delete(Integer id);
 
-	@Select("select * from article where author=#{author}")
+	@Select("select * from article where author=#{author} and state='published'")
 	List<Article> selectAll(String author);
+	
+	@Select("select * from article where id=#{id}")
+	Article selectOne(Integer id);
 
 	@Update("update article set "
 			+ "title=#{title},content=#{content}, content_md=#{content_md} "
