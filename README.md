@@ -44,3 +44,18 @@ axios.get('http://localhost:8080/articles?id=' + this.$route.query.id)
 ```
 
 使用 [vue-markdown](https://github.com/miaolz123/vue-markdown) 来渲染文章
+
+- [x] 删除和存入草稿箱功能
+
+给文章实体 `article` 增加一个状态属性 `state`，为“published”时候表示发布，为“deleted”时候表示删除，为“draft”时候表示是草稿。
+
+```java
+@Update("update article set state='deleted' where id=#{id}")
+Integer delete(Integer id);
+
+@Select("select * from article where author=#{author} and state not in('deleted')")
+List<Article> selectAll(String author);
+
+@Select("select * from article where id=#{id}")
+Article selectOne(Integer id);
+```
