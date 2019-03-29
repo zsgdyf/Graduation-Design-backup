@@ -29,7 +29,10 @@
                 >
                   <h4 @click="toArticles(article.id)">{{article.id}}# {{article.title}}</h4>
                   <span class="action">编辑</span>
-                  <span class="action">删除</span>
+                  <span
+                    class="action"
+                    @click="deleteConfirm(article.id)"
+                  >删除</span>
                 </el-row>
                 <p>{{article.author}} 提交于 {{article.create_time}}</p>
               </el-card>
@@ -63,6 +66,7 @@ export default {
         this.articles = response.data
         console.log(this.articles)
       })
+      this.reverse = false
     },
     toArticles (articleId) {
       this.$router.push({
@@ -71,6 +75,40 @@ export default {
           id: articleId
         }
       })
+    },
+    deleteArticle (articleId) {
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/deleteArticle',
+        data: '&id=' + articleId
+      }).then(response => {
+        if (response.data.message === '已删除！') {
+          this.$message({
+            type: 'success',
+            message: response.data.message
+          })
+        }
+        this.getData()
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    deleteConfirm (articleId) {
+      this.$confirm('此操作不可逆，确认删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          if (this.$confirm) {
+            this.deleteArticle(articleId)
+          }
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消删除'
+          })
+        })
     }
   },
   created () {

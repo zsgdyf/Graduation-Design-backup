@@ -49,7 +49,8 @@ export default {
         content: '',
         author: '',
         creat_time: '',
-        creat_date: ''
+        creat_date: '',
+        state: ''
       },
       content_md: '',
       configs: {
@@ -66,17 +67,20 @@ export default {
     publishConfirm () {
       this.$confirm('确认发布吗？', '提示', {
         confirmButtonText: '确定',
-        cancelButtonText: '取消',
+        cancelButtonText: '取消，存入草稿箱',
         type: 'warning'
       }).then(() => {
         if (this.$confirm) {
+          this.article.state = 'published'
           this.publish()
         }
       }).catch(() => {
         this.$message({
-          message: '取消发布',
+          message: '已存入草稿箱',
           type: 'info'
         })
+        this.article.state = 'draft'
+        this.publish()
       })
     },
     publish () {
@@ -91,13 +95,18 @@ export default {
           author: this.article.author,
           create_time: this.article.creat_time,
           create_date: this.article.creat_date,
-          state: 'published'
+          state: this.article.state
         }
       }).then(response => {
-        if (response.data.message === '提交成功！') {
+        if (response.data.state === 'published') {
           this.$message({
-            message: response.data.message,
+            message: '发布成功！',
             type: 'success'
+          })
+        } else if (response.data.state === 'draft') {
+          this.$message({
+            message: '已存入草稿箱',
+            type: 'info'
           })
         }
         console.log(response)

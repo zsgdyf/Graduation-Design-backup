@@ -20,12 +20,12 @@ public interface ArticleMapper {
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
 	void insert(Article article);
 
-	@Delete("delete from article where id=#{id}")
+	@Update("update article set state='deleted' where id=#{id}")
 	Integer delete(Integer id);
 
-	@Select("select * from article where author=#{author} and state='published'")
+	@Select("select * from article where author=#{author} and state not in('deleted')")
 	List<Article> selectAll(String author);
-	
+
 	@Select("select * from article where id=#{id}")
 	Article selectOne(Integer id);
 

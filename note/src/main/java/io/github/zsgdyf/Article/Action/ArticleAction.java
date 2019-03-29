@@ -23,7 +23,7 @@ public class ArticleAction {
 		Article article2 = JSON.parseObject(article, Article.class);
 		articleMapper.insert(article2);
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("message", "发布成功！");
+		jsonObject.put("state", article2.getState());
 		return jsonObject;
 	}
 
@@ -35,5 +35,13 @@ public class ArticleAction {
 	@RequestMapping(value = "/articles")
 	public Article selectOne(Integer id) {
 		return articleMapper.selectOne(id);
+	}
+	
+	@RequestMapping(value = "/deleteArticle")
+	public Object delete(Integer id) {
+		articleMapper.delete(id);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("message", "已删除！");
+		return jsonObject;
 	}
 }
