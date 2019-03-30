@@ -27,7 +27,9 @@
                   type="flex"
                   class="row-bg"
                 >
-                  <h4 @click="toArticles(article.id)">{{article.id}}# {{article.title}}</h4>
+                  <h4 @click="toArticles(article.id)">{{article.id}}# {{article.title}}
+                    <span class="article-state">{{(article.state==='draft') ? '【草稿】' : ''}}</span>
+                  </h4>
                   <span class="action">编辑</span>
                   <span
                     class="action"
@@ -142,5 +144,9 @@ span.action {
   margin-left: 1rem;
   cursor: pointer;
   color: #409eff;
+}
+span.article-state{
+  font-weight: normal;
+  color: #909399;
 }
 </style>
