@@ -6,6 +6,7 @@ import Index from '@/views/index'
 import MyNotes from '@/views/myNotes'
 import Editor from '@/views/editor'
 import Articles from '@/views/articles'
+import UserInfo from '@/views/userInfo'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,9 @@ const routes = [{
 }, {
   path: '/users',
   component: UserList
+}, {
+  path: '/user',
+  component: UserInfo
 }, {
   path: '/',
   redirect: '/index'
