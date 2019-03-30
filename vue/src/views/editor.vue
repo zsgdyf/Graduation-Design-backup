@@ -160,7 +160,6 @@ export default {
 }
 .editor-container {
   width: 80%;
-  padding-left: 40px;
 }
 #content {
   margin-top: 2rem;
