@@ -28,6 +28,9 @@ public interface ArticleMapper {
 
 	@Select("select * from article where id=#{id}")
 	Article selectOne(Integer id);
+	
+	@Select("select * from article")
+	List<Article> selectPopular();
 
 	@Update("update article set "
 			+ "title=#{title},content=#{content}, content_md=#{content_md} "

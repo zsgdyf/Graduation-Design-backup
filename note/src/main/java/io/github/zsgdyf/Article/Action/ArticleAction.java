@@ -1,6 +1,7 @@
 package io.github.zsgdyf.Article.Action;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,11 @@ public class ArticleAction {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("state", article2.getState());
 		return jsonObject;
+	}
+	
+	@RequestMapping(value = "/popularArticles")
+	public List<Article> selectPopular(){
+		return articleMapper.selectPopular();
 	}
 
 	@RequestMapping(value = "/myNotes")
