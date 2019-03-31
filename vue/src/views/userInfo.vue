@@ -9,6 +9,9 @@
       >
         <SideNavMenu></SideNavMenu>
         <div class="info-container">
+          <div class="info-content">
+            <h2>{{user.name}}，你好！</h2>
+          </div>
         </div>
       </el-row>
     </div>
@@ -22,6 +25,19 @@ export default {
   components: {
     NavMenu,
     SideNavMenu
+  },
+  data () {
+    return {
+      user: []
+    }
+  },
+  methods: {
+    getUserData () {
+      this.user.name = localStorage.userName
+    }
+  },
+  created () {
+    this.getUserData()
   }
 }
 </script>
@@ -36,5 +52,8 @@ export default {
 }
 .info-container {
   width: 80%;
+}
+.info-content{
+  padding-left: 2rem;
 }
 </style>
