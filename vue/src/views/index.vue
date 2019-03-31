@@ -16,6 +16,7 @@
           v-for="(article,index) in articles"
           :key="index"
           shadow="never"
+          :body-style="{padding: '10px'}"
         >
           <h4 @click="toArticle(article.id)">{{article.title}}</h4>
           <p class="author-info"><span>{{article.author}}</span> 于 <span>{{article.create_date}}</span></p>
@@ -82,6 +83,7 @@ export default {
 }
 .author-info {
   color: #909399;
+  font-size: 0.9rem;
 }
 h4 {
   cursor: pointer;
