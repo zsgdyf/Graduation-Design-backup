@@ -9,20 +9,22 @@
       >
         <SideNavMenu></SideNavMenu>
         <div class="editor-container">
-          <el-input
-            v-model="article.title"
-            placeholder="请输入笔记标题"
-          ></el-input>
-          <markdown-editor
-            v-model="content_md"
-            ref="markdownEditor"
-            preview-class="markdown-body"
-            :highlight="true"
-          ></markdown-editor>
-          <el-button
-            type="primary"
-            @click="publishConfirm"
-          >发布</el-button>
+          <div class="editor-box">
+            <el-input
+              v-model="article.title"
+              placeholder="请输入笔记标题"
+            ></el-input>
+            <markdown-editor
+              v-model="content_md"
+              ref="markdownEditor"
+              preview-class="markdown-body"
+              :highlight="true"
+            ></markdown-editor>
+            <el-button
+              type="primary"
+              @click="publishConfirm"
+            >发布</el-button>
+          </div>
         </div>
       </el-row>
     </div>
@@ -160,6 +162,9 @@ export default {
 }
 .editor-container {
   width: 80%;
+}
+.editor-box {
+  padding-left: 2rem;
 }
 #content {
   margin-top: 2rem;
