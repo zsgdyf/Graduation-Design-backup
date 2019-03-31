@@ -59,3 +59,4 @@ List<Article> selectAll(String author);
 @Select("select * from article where id=#{id}")
 Article selectOne(Integer id);
 ```
+- [x] 首页文章显示
