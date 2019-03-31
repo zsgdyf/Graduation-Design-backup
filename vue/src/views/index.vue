@@ -18,7 +18,11 @@
           shadow="never"
           :body-style="{padding: '10px'}"
         >
-          <h4 @click="toArticle(article.id)">{{article.title}}</h4>
+          <a
+            target="_blank"
+          >
+            <h4 @click="toArticle(article.id)">{{article.title}}</h4>
+          </a>
           <p class="author-info"><span>{{article.author}}</span> 于 <span>{{article.create_date}}</span></p>
         </el-card>
       </el-card>
