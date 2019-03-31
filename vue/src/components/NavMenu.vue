@@ -15,10 +15,18 @@
           index="/add"
           v-show="unlogin"
         >登录 / 注册</el-menu-item>
-        <el-menu-item
+        <el-submenu
+          v-show="logined"
+        >
+          <template slot="title">欢迎您，{{userName}}</template>
+          <el-menu-item index="/myNotes">我的笔记</el-menu-item>
+          <el-menu-item index="/editor">创建笔记</el-menu-item>
+          <el-menu-item index="/user">个人信息</el-menu-item>
+        </el-submenu>
+        <!-- <el-menu-item
           index="/myNotes"
           v-show="logined"
-        >欢迎您，{{userName}}</el-menu-item>
+        >欢迎您，{{userName}}</el-menu-item> -->
         <el-menu-item index="/users">用户列表</el-menu-item>
       </el-row>
     </el-menu>
@@ -53,6 +61,9 @@ export default {
 #NavMenu {
   width: 100%;
   margin: 0 auto;
+}
+.el-submenu {
+  width: 10rem;
 }
 :focus {
   outline: none;
