@@ -5,7 +5,16 @@
       mode="horizontal"
       router
     >
-      <el-menu-item index="/index">首页</el-menu-item>
+      <el-menu-item>
+        <router-link to="/">
+          <img
+            src="@/assets/logo-1.png"
+            width="111px"
+            height="56px"
+          >
+        </router-link>
+      </el-menu-item>
+      <!-- <el-menu-item index="/index">首页</el-menu-item> -->
       <el-row
         type="flex"
         class="row-bg"
@@ -15,9 +24,7 @@
           index="/add"
           v-show="unlogin"
         >登录 / 注册</el-menu-item>
-        <el-submenu
-          v-show="logined"
-        >
+        <el-submenu v-show="logined">
           <template slot="title">欢迎您，{{userName}}</template>
           <el-menu-item index="/myNotes">我的笔记</el-menu-item>
           <el-menu-item index="/editor">创建笔记</el-menu-item>
