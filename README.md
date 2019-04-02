@@ -70,4 +70,6 @@ Article selectOne(Integer id);
 
 - [ ] 用户信息显示
 
+用户名、头像、个人简介、感兴趣的标签
+
 - [ ] 标签组件
