@@ -22,7 +22,6 @@ Article article2 = JSON.parseObject(article,Article.class);
 
 使用 `index` 排序，参考官方文档的例子增加一个正序和倒序切换的开关。
 
-- [ ] 用户信息显示
 - [x] 笔记详情页面
 
 通过这种方法给文章页面传递文章 ID 参数：
@@ -60,3 +59,17 @@ List<Article> selectAll(String author);
 Article selectOne(Integer id);
 ```
 - [x] 首页文章显示
+
+- [ ] 注册后选择感兴趣的标签
+
+- [ ] 发布按钮组
+
+- [ ] 我的收藏页面
+
+- [ ] 笔记编辑功能
+
+- [ ] 用户信息显示
+
+用户名、头像、个人简介、感兴趣的标签
+
+- [ ] 标签组件
