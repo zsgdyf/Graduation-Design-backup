@@ -1,6 +1,6 @@
 package io.github.zsgdyf.Article;
 
-public class Article{
+public class Article {
 	private Integer id;
 	private String title;
 	private String content;
@@ -16,7 +16,8 @@ public class Article{
 		return id;
 	}
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
@@ -28,7 +29,8 @@ public class Article{
 		return title;
 	}
 	/**
-	 * @param title the title to set
+	 * @param title
+	 *            the title to set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -40,7 +42,8 @@ public class Article{
 		return content;
 	}
 	/**
-	 * @param content the content to set
+	 * @param content
+	 *            the content to set
 	 */
 	public void setContent(String content) {
 		this.content = content;
@@ -52,7 +55,8 @@ public class Article{
 		return content_md;
 	}
 	/**
-	 * @param content_md the content_md to set
+	 * @param content_md
+	 *            the content_md to set
 	 */
 	public void setContent_md(String content_md) {
 		this.content_md = content_md;
@@ -64,7 +68,8 @@ public class Article{
 		return author;
 	}
 	/**
-	 * @param author the author to set
+	 * @param author
+	 *            the author to set
 	 */
 	public void setAuthor(String author) {
 		this.author = author;
@@ -76,7 +81,8 @@ public class Article{
 		return create_time;
 	}
 	/**
-	 * @param creat_time the creat_time to set
+	 * @param creat_time
+	 *            the creat_time to set
 	 */
 	public void setCreate_time(String create_time) {
 		this.create_time = create_time;
@@ -88,7 +94,8 @@ public class Article{
 		return create_date;
 	}
 	/**
-	 * @param create_date the create_date to set
+	 * @param create_date
+	 *            the create_date to set
 	 */
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
@@ -100,7 +107,8 @@ public class Article{
 		return state;
 	}
 	/**
-	 * @param state the state to set
+	 * @param state
+	 *            the state to set
 	 */
 	public void setState(String state) {
 		this.state = state;
