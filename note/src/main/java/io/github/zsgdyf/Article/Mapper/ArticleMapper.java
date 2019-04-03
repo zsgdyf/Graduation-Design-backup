@@ -17,6 +17,7 @@ public interface ArticleMapper {
 			+ "(title,content,content_md,author,create_time,create_date,state) "
 			+ "values "
 			+ "(#{title},#{content},#{content_md},#{author},#{create_time},#{create_date},#{state})")
+	// 获取自增长的主键值
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
 	void insert(Article article);
 
