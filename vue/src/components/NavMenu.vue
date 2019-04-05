@@ -29,11 +29,8 @@
           <el-menu-item index="/myNotes">我的笔记</el-menu-item>
           <el-menu-item index="/editor">创建笔记</el-menu-item>
           <el-menu-item index="/user">个人信息</el-menu-item>
+          <el-menu-item @click="logout">注销登录</el-menu-item>
         </el-submenu>
-        <!-- <el-menu-item
-          index="/myNotes"
-          v-show="logined"
-        >欢迎您，{{userName}}</el-menu-item> -->
         <el-menu-item index="/users">用户列表</el-menu-item>
       </el-row>
     </el-menu>
@@ -53,6 +50,10 @@ export default {
   methods: {
     defaultIndex () {
       this.activeIndexSideNav = this.$route.path
+    },
+    logout () {
+      window.localStorage.clear()
+      this.$router.push({ path: '/' })
     }
   },
   mounted () {
