@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
 
 import io.github.zsgdyf.Article.Article;
 import io.github.zsgdyf.LoveArticle.LoveArticle;
@@ -18,5 +19,5 @@ public interface LoveArticleMapper {
 
 	@Select("select * from article where id in "
 			+ "(select article_id from love_article where user_id = #{user_id})")
-	List<Article> select(Integer user_id);
+	List<Article> select(@Param("user_id") Integer user_id);
 }

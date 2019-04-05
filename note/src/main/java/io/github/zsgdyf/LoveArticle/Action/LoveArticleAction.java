@@ -20,8 +20,8 @@ public class LoveArticleAction {
 	private LoveArticleMapper loveArticleMapper;
 	
 	@RequestMapping(value="/getLoveArticle")
-	public List<Article> getLoveArticle(Integer userId) {
-		return loveArticleMapper.select(userId);
+	public List<Article> getLoveArticle(Integer user_id) {
+		return loveArticleMapper.select(user_id);
 	}
 	
 	@RequestMapping(value="/loveArticle")
