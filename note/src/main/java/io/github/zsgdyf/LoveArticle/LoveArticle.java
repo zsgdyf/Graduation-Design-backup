@@ -3,6 +3,8 @@ package io.github.zsgdyf.LoveArticle;
 public class LoveArticle {
 	private Integer user_id;
 	private Integer article_id;
+	private String love_time;
+	private String love_date;
 	/**
 	 * @return the user_id
 	 */
@@ -26,5 +28,29 @@ public class LoveArticle {
 	 */
 	public void setArticle_id(Integer article_id) {
 		this.article_id = article_id;
+	}
+	/**
+	 * @return the love_time
+	 */
+	public String getLove_time() {
+		return love_time;
+	}
+	/**
+	 * @param love_time the love_time to set
+	 */
+	public void setLove_time(String love_time) {
+		this.love_time = love_time;
+	}
+	/**
+	 * @return the love_date
+	 */
+	public String getLove_date() {
+		return love_date;
+	}
+	/**
+	 * @param love_date the love_date to set
+	 */
+	public void setLove_date(String love_date) {
+		this.love_date = love_date;
 	}
 }
