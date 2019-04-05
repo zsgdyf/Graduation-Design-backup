@@ -73,7 +73,7 @@ Article selectOne(Integer id);
 
 ```java
 @Select("select * from article where id in "
-			+ "(select article_id from love_article where user_id = #{user_id})")
+	+ "(select article_id from love_article where user_id = #{user_id})")
 List<Article> select(Integer user_id);
 ```
 
