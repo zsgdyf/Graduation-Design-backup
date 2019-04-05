@@ -5,9 +5,9 @@
       router
     >
       <el-menu-item index="/editor">创建笔记</el-menu-item>
-      <el-menu-item index="/user">个人信息</el-menu-item>
       <el-menu-item index="/myNotes">我的笔记</el-menu-item>
       <el-menu-item index="/myLove">我的收藏</el-menu-item>
+      <el-menu-item index="/user">个人信息</el-menu-item>
       <el-menu-item @click="logout">注销登录</el-menu-item>
     </el-menu>
   </div>
