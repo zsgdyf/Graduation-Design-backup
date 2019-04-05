@@ -18,18 +18,35 @@ import io.github.zsgdyf.LoveArticle.Mapper.LoveArticleMapper;
 public class LoveArticleAction {
 	@Autowired
 	private LoveArticleMapper loveArticleMapper;
-	
-	@RequestMapping(value="/getLoveArticle")
+
+	@RequestMapping(value = "/getLoveArticle")
 	public List<Article> getLoveArticle(Integer user_id) {
 		return loveArticleMapper.select(user_id);
 	}
-	
-	@RequestMapping(value="/loveArticle")
+
+	@RequestMapping(value = "/loveArticle")
 	public Object loveArticle(@RequestBody String loveArticle) {
-		LoveArticle loveArticle2 = JSON.parseObject(loveArticle,LoveArticle.class);
+		LoveArticle loveArticle2 = JSON.parseObject(loveArticle,
+				LoveArticle.class);
 		loveArticleMapper.insert(loveArticle2);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("message", "收藏成功！");
 		return jsonObject;
+	}
+
+	@RequestMapping(value = "/selectLoveExist")
+	public Object selectLoveExist(Integer user_id, Integer article_id) {
+		if (loveArticleMapper.selectLoveExist(user_id, article_id) != null) {
+			return loveArticleMapper.selectLoveExist(user_id, article_id);
+		} else {
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("message", "已收藏！");
+			return jsonObject;
+		}
+	}
+
+	@RequestMapping(value = "/selectUserLove")
+	public List<LoveArticle> selectUserLove(Integer user_id) {
+		return loveArticleMapper.selectUserLove(user_id);
 	}
 }
