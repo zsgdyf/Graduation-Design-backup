@@ -3,6 +3,7 @@
     <NavMenu></NavMenu>
     <div class="article-content">
       <h1>{{article.title}}</h1>
+      <p>作者：{{article.author}} <span @click="loveArticle">收藏</span></p>
       <div>
         <vue-markdown :source="article.content_md"></vue-markdown>
       </div>
@@ -32,6 +33,26 @@ export default {
       axios.get('http://localhost:8080/articles?id=' + this.$route.query.id).then(response => {
         this.article = response.data
         console.log(this.article)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    loveArticle () {
+      let userId = window.localStorage.userId
+      let currentDate = new Date()
+      let loveTime = currentDate.toLocaleString('zh', { hour12: false })
+      let loveDate = currentDate.toLocaleDateString()
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/loveArticle',
+        data: {
+          user_id: userId,
+          article_id: this.article.id,
+          love_time: loveTime,
+          love_date: loveDate
+        }
+      }).then(response => {
+        console.log(response)
       }).catch(error => {
         console.log(error)
       })

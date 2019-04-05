@@ -7,6 +7,7 @@ import MyNotes from '@/views/myNotes'
 import Editor from '@/views/editor'
 import Articles from '@/views/articles'
 import UserInfo from '@/views/userInfo'
+import MyLove from '@/views/myLove'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,9 @@ const routes = [{
 }, {
   path: '/articles',
   component: Articles
+}, {
+  path: '/myLove',
+  component: MyLove
 }]
 export default new VueRouter({
   routes
