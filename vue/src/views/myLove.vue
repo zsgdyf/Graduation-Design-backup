@@ -10,6 +10,7 @@
         <SideNavMenu></SideNavMenu>
         <div id="timeline">
           <div class="radio">
+            <span>按收藏时间：</span>
             <el-radio-group v-model="reverse">
               <el-radio :label="false">正序</el-radio>
               <el-radio :label="true">倒序</el-radio>
@@ -64,6 +65,14 @@ export default {
         console.log(response)
       }).catch(error => {
         console.log(error)
+      })
+    },
+    toArticles (articleId) {
+      this.$router.push({
+        path: '/articles',
+        query: {
+          id: articleId
+        }
       })
     }
   },

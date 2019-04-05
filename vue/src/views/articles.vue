@@ -3,7 +3,10 @@
     <NavMenu></NavMenu>
     <div class="article-content">
       <h1>{{article.title}}</h1>
-      <p>作者：{{article.author}} <span @click="loveArticle">收藏</span></p>
+      <p>作者：{{article.author}} <span
+          @click="loveArticle"
+          class="action"
+        >收藏</span></p>
       <div>
         <vue-markdown :source="article.content_md"></vue-markdown>
       </div>
@@ -74,6 +77,12 @@ export default {
 }
 .article-content {
   margin-left: 2rem;
+}
+span.action {
+  line-height: 3.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  color: #409eff;
 }
 code {
   color: black;
