@@ -58,7 +58,10 @@ List<Article> selectAll(String author);
 @Select("select * from article where id=#{id}")
 Article selectOne(Integer id);
 ```
+
 - [x] 首页文章显示
+
+- [x] 文章详情页面添加收藏功能
 
 - [ ] 注册后选择感兴趣的标签
 
