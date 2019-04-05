@@ -119,7 +119,7 @@ export default {
     getArticleData () {
       this.article.author = localStorage.userName
       this.article.content = this.simplemde.markdown(this.content_md)
-      var currentDate = new Date()
+      let currentDate = new Date()
       this.article.creat_time = currentDate.toLocaleString('zh', { hour12: false })
       this.article.creat_date = currentDate.toLocaleDateString()
     }
