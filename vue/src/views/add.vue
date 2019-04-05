@@ -250,6 +250,7 @@ export default {
           // 将返回的 token 存储到本地
           window.localStorage['token'] = JSON.stringify(response.data.token)
           window.localStorage['userName'] = response.data.user.name
+          window.localStorage['userId'] = response.data.user.id
           this.$router.push({ path: '/' })
         }
       }).catch(error => {
