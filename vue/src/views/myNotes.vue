@@ -10,6 +10,7 @@
         <SideNavMenu></SideNavMenu>
         <div id="timeline">
           <div class="radio">
+            <span>按发布时间：</span>
             <el-radio-group v-model="reverse">
               <el-radio :label="false">正序</el-radio>
               <el-radio :label="true">倒序</el-radio>
