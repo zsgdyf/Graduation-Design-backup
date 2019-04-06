@@ -2,6 +2,7 @@ package io.github.zsgdyf.LoveArticle.Mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -26,4 +27,8 @@ public interface LoveArticleMapper {
 
 	@Select("select * from love_article where user_id=#{user_id}")
 	List<LoveArticle> selectUserLove(Integer user_id);
+
+	@Delete("delete from love_article "
+			+ "where userd_id=#{user_id} and article_id=#{article_id}")
+	void delete(Integer user_id, Integer article_id);
 }

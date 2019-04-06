@@ -36,8 +36,10 @@ public class LoveArticleAction {
 
 	@RequestMapping(value = "/selectLoveExist")
 	public Object selectLoveExist(Integer user_id, Integer article_id) {
-		if (loveArticleMapper.selectLoveExist(user_id, article_id) != null) {
-			return loveArticleMapper.selectLoveExist(user_id, article_id);
+		LoveArticle loveArticle = loveArticleMapper.selectLoveExist(user_id,
+				article_id);
+		if (loveArticle != null) {
+			return loveArticle;
 		} else {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("message", "已收藏！");
@@ -48,5 +50,13 @@ public class LoveArticleAction {
 	@RequestMapping(value = "/selectUserLove")
 	public List<LoveArticle> selectUserLove(Integer user_id) {
 		return loveArticleMapper.selectUserLove(user_id);
+	}
+	
+	@RequestMapping(value="/deleteLove")
+	public Object deleteLove(Integer user_id, Integer article_id) {
+		loveArticleMapper.delete(user_id, article_id);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("message", "取消收藏！");
+		return jsonObject;
 	}
 }
