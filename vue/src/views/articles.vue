@@ -3,7 +3,8 @@
     <NavMenu></NavMenu>
     <div class="article-content">
       <h1>{{article.title}}</h1>
-      <p>作者：{{article.author}} <span
+      <p class="author-info">作者：{{article.author}}&nbsp;&nbsp;
+        发布于：{{article.create_time}}<span
           @click="loveArticle"
           class="action"
         >收藏</span></p>
@@ -77,6 +78,9 @@ export default {
 }
 .article-content {
   margin-left: 2rem;
+}
+p.author-info{
+  color: #909399;
 }
 span.action {
   line-height: 3.5rem;
