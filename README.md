@@ -67,7 +67,15 @@ Article selectOne(Integer id);
 
 - [ ] 发布按钮组
 
-- [ ] 我的收藏页面
+- [x] 我的收藏页面
+
+通过建立用户和笔记的收藏关系表，方便查询某个用户收藏的所有文章
+
+```java
+@Select("select * from article where id in "
+	+ "(select article_id from love_article where user_id = #{user_id})")
+List<Article> select(Integer user_id);
+```
 
 - [ ] 笔记编辑功能
 
