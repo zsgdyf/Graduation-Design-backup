@@ -24,14 +24,17 @@
           index="/add"
           v-show="unlogin"
         >登录 / 注册</el-menu-item>
-        <el-submenu v-show="logined">
+        <el-submenu
+          v-show="logined"
+          index=""
+        >
           <template slot="title">欢迎您，{{userName}}</template>
           <el-menu-item index="/myNotes">我的笔记</el-menu-item>
           <el-menu-item index="/editor">创建笔记</el-menu-item>
           <el-menu-item index="/user">个人信息</el-menu-item>
           <el-menu-item @click="logout">注销登录</el-menu-item>
         </el-submenu>
-        <el-menu-item index="/users">用户列表</el-menu-item>
+        <el-menu-item index="/userList">用户列表</el-menu-item>
       </el-row>
     </el-menu>
   </div>
