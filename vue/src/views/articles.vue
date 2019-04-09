@@ -4,10 +4,18 @@
     <div class="article-content">
       <h1>{{article.title}}</h1>
       <p class="author-info">作者：{{article.author}}&nbsp;&nbsp;
-        发布于：{{article.create_time}}<span
+        发布于：{{article.create_time}}
+        <span
           @click="loveArticle"
           class="action"
-        >收藏</span></p>
+          v-show="love"
+        >收藏</span>
+        <span
+          @click="cancelLoveArticle"
+          class="action"
+          v-show="loved"
+        >已收藏</span>
+      </p>
       <div>
         <vue-markdown :source="article.content_md"></vue-markdown>
       </div>
@@ -29,7 +37,9 @@ export default {
   },
   data () {
     return {
-      article: []
+      article: [],
+      love: true,
+      loved: false
     }
   },
   methods: {
@@ -57,6 +67,22 @@ export default {
         }
       }).then(response => {
         console.log(response)
+        this.loved = true
+        this.love = false
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    cancelLoveArticle () {
+      let userId = window.localStorage.userId
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/deleteLove',
+        data: '&user_id=' + userId + '&article_id=' + this.article.id
+      }).then(response => {
+        console.log(response)
+        this.loved = false
+        this.love = true
       }).catch(error => {
         console.log(error)
       })
@@ -79,7 +105,7 @@ export default {
 .article-content {
   margin-left: 2rem;
 }
-p.author-info{
+p.author-info {
   color: #909399;
 }
 span.action {

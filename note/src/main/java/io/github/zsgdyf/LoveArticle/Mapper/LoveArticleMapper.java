@@ -29,6 +29,6 @@ public interface LoveArticleMapper {
 	List<LoveArticle> selectUserLove(Integer user_id);
 
 	@Delete("delete from love_article "
-			+ "where userd_id=#{user_id} and article_id=#{article_id}")
+			+ "where user_id=#{user_id} and article_id=#{article_id}")
 	void delete(Integer user_id, Integer article_id);
 }
