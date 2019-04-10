@@ -83,7 +83,7 @@ export default {
       axios({
         method: 'post',
         url: 'http://localhost:8080/deleteArticle',
-        data: '&id=' + articleId
+        data: 'id=' + articleId
       }).then(response => {
         if (response.data.message === '已删除！') {
           this.$message({

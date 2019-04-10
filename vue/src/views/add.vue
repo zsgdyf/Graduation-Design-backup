@@ -234,7 +234,7 @@ export default {
       axios({
         method: 'post',
         url: 'http://localhost:8080/login',
-        data: '&name=' + this.user.logName + '&password=' + this.user.logPassword
+        data: 'name=' + this.user.logName + '&password=' + this.user.logPassword
       }).then(response => {
         if (response.data.message === '用户不存在！') {
           this.$message.error(response.data.message)
@@ -261,7 +261,7 @@ export default {
       axios({
         method: 'post',
         url: 'http://localhost:8080/insert',
-        data: '&name=' + this.user.name + '&password=' + this.user.password
+        data: 'name=' + this.user.name + '&password=' + this.user.password
       }).then(response => {
         if (response.data.message === '用户名已被使用！') {
           this.$message.error(response.data.message)

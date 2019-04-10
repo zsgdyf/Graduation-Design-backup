@@ -78,7 +78,7 @@ export default {
       axios({
         method: 'post',
         url: 'http://localhost:8080/deleteLove',
-        data: '&user_id=' + userId + '&article_id=' + this.article.id
+        data: 'user_id=' + userId + '&article_id=' + this.article.id
       }).then(response => {
         console.log(response)
         this.loved = false
