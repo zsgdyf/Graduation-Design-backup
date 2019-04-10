@@ -38,19 +38,27 @@ export default {
   data () {
     return {
       article: [],
-      love: true,
-      loved: false
+      love: '',
+      loved: '' // 为 true 时表示文章已被用户收藏
     }
   },
   methods: {
     getArticle () {
       axios.get('http://localhost:8080/articles?id=' + this.$route.query.id).then(response => {
         this.article = response.data
+        if (this.loveExist()) {
+          this.love = true
+          this.loved = false
+        } else {
+          this.love = false
+          this.loved = true
+        }
         console.log(this.article)
       }).catch(error => {
         console.log(error)
       })
     },
+    // 收藏
     loveArticle () {
       let userId = window.localStorage.userId
       let currentDate = new Date()
@@ -67,12 +75,19 @@ export default {
         }
       }).then(response => {
         console.log(response)
+        if (response.data.message === '收藏成功！') {
+          this.$message({
+            message: response.data.message,
+            type: 'success'
+          })
+        }
         this.loved = true
         this.love = false
       }).catch(error => {
         console.log(error)
       })
     },
+    // 取消收藏
     cancelLoveArticle () {
       let userId = window.localStorage.userId
       axios({
@@ -81,14 +96,34 @@ export default {
         data: 'user_id=' + userId + '&article_id=' + this.article.id
       }).then(response => {
         console.log(response)
+        if (response.data.message === '取消收藏！') {
+          this.$message(response.data.message)
+        }
         this.loved = false
         this.love = true
       }).catch(error => {
         console.log(error)
       })
+    },
+    // 判断收藏关系是否存在，文章是否被收藏
+    loveExist () {
+      let userId = window.localStorage.userId
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/selectLoveExist',
+        data: `user_id=${userId}&article_id=${this.article.id}`
+      }).then(response => {
+        if (response.data !== null) {
+          return true
+        } else {
+          return false
+        }
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
-  created () {
+  mounted () {
     this.getArticle()
   },
   updated: function () {

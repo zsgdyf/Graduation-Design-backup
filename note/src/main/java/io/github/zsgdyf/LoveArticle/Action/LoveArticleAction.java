@@ -41,9 +41,7 @@ public class LoveArticleAction {
 		if (loveArticle != null) {
 			return loveArticle;
 		} else {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("message", "已收藏！");
-			return jsonObject;
+			return null;
 		}
 	}
 

@@ -30,6 +30,10 @@
                 >
                   <h4 @click="toArticles(article.id)">{{article.id}}# {{article.title}}
                   </h4>
+                  <span
+                    class="action"
+                    @click="cancelLoveArticle(article.id)"
+                  >取消收藏</span>
                 </el-row>
                 <p>{{article.author}} 提交于 {{article.create_time}}</p>
               </el-card>
@@ -73,6 +77,22 @@ export default {
         query: {
           id: articleId
         }
+      })
+    },
+    cancelLoveArticle (articleId) {
+      let userId = window.localStorage.userId
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/deleteLove',
+        data: 'user_id=' + userId + '&article_id=' + articleId
+      }).then(response => {
+        console.log(response)
+        if (response.data.message === '取消收藏！') {
+          this.$message(response.data.message)
+        }
+        this.getData()
+      }).catch(error => {
+        console.log(error)
       })
     }
   },
