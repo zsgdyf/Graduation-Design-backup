@@ -63,6 +63,21 @@ Article selectOne(Integer id);
 
 - [x] 文章详情页面添加收藏功能
 
+可切换的文本链接，可以在「收藏」和「已收藏」之间切换
+
+```javascript
+<span
+@click="loveArticle"
+class="action"
+v-show="love"
+>收藏</span>
+<span
+@click="cancelLoveArticle"
+class="action"
+v-show="loved"
+>已收藏</span>
+```
+
 - [ ] 注册后选择感兴趣的标签
 
 - [ ] 发布按钮组
