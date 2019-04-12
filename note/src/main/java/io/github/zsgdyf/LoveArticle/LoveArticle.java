@@ -1,8 +1,5 @@
 package io.github.zsgdyf.LoveArticle;
 
-
-import io.github.zsgdyf.Article.Article;
-
 public class LoveArticle {
 	private Integer user_id;
 	private Integer article_id;
