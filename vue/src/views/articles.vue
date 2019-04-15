@@ -19,6 +19,13 @@
       <div>
         <vue-markdown :source="article.content_md"></vue-markdown>
       </div>
+      <hr>
+      <div class="tags">
+        <el-tag
+          :key="label"
+          v-for="label in labels"
+        >{{label.content}}</el-tag>
+      </div>
     </div>
   </div>
 </template>
@@ -39,13 +46,15 @@ export default {
     return {
       article: [],
       love: '',
-      loved: '' // 为 true 时表示文章已被用户收藏
+      loved: '', // 为 true 时表示文章已被用户收藏
+      labels: []
     }
   },
   methods: {
     getArticle () {
       axios.get('http://localhost:8080/articles?id=' + this.$route.query.id).then(response => {
         this.article = response.data
+        this.getTags()
         if (this.loveExist()) {
           this.love = true
           this.loved = false
@@ -121,6 +130,13 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    getTags () {
+      axios.get('http://localhost:8080/getLabel?articleId=' + this.article.id).then(response => {
+        this.labels = response.data
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   mounted () {
@@ -148,6 +164,13 @@ span.action {
   margin-left: 1rem;
   cursor: pointer;
   color: #409eff;
+}
+.tags {
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+.el-tag {
+  margin-left: 0.6rem;
 }
 code {
   color: black;
