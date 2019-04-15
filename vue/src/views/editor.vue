@@ -11,6 +11,7 @@
         <div class="editor-container">
           <div class="editor-box">
             <el-input
+              class="article-title"
               v-model="article.title"
               placeholder="请输入笔记标题"
             ></el-input>
@@ -19,6 +20,7 @@
               ref="markdownEditor"
               preview-class="markdown-body"
               :highlight="true"
+              :configs="configs"
             ></markdown-editor>
             <el-button
               type="primary"
@@ -61,7 +63,8 @@ export default {
           enable: true,
           delay: 1000,
           uniqueId: 'autoSave'
-        }
+        },
+        placeholder: '请输入笔记内容'
       }
     }
   },
@@ -168,6 +171,9 @@ export default {
 }
 #content {
   margin-top: 2rem;
+}
+.article-title {
+  padding-bottom: 1rem;
 }
 /*修改代码块背景色及字体颜色*/
 /* .theme .editor-preview-side pre,
