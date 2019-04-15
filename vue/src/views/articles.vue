@@ -22,7 +22,7 @@
       <hr>
       <div class="tags">
         <el-tag
-          :key="label"
+          :key="label.id"
           v-for="label in labels"
         >{{label.content}}</el-tag>
       </div>
