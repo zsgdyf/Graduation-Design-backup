@@ -18,9 +18,7 @@
           shadow="never"
           :body-style="{padding: '10px'}"
         >
-          <a
-            target="_blank"
-          >
+          <a target="_blank">
             <h4 @click="toArticle(article.id)">{{article.title}}</h4>
           </a>
           <p class="author-info"><span>{{article.author}}</span> 于 <span>{{article.create_date}}</span></p>
@@ -29,7 +27,13 @@
       <el-card
         class="labels"
         shadow="never"
-      ></el-card>
+      >
+        <p>热门标签</p>
+        <el-tag
+          :key="label.id"
+          v-for="label in labels"
+        >{{label.content}}</el-tag>
+      </el-card>
     </el-row>
   </div>
 </template>
@@ -61,10 +65,20 @@ export default {
           id: articleId
         }
       })
+    },
+    getLabels () {
+      axios.get('http://localhost:8080/popularLabels').then(response => {
+        this.labels = response.data
+      }).catche(error => {
+        console.log(error)
+      })
     }
   },
   created () {
     this.getArticles()
+  },
+  mounted () {
+    this.getLabels()
   }
 }
 </script>
@@ -91,5 +105,9 @@ export default {
 }
 h4 {
   cursor: pointer;
+}
+.el-tag {
+  margin-left: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 </style>
