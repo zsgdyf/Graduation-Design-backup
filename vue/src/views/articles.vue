@@ -55,13 +55,7 @@ export default {
       axios.get('http://localhost:8080/articles?id=' + this.$route.query.id).then(response => {
         this.article = response.data
         this.getTags()
-        if (this.loveExist()) {
-          this.love = true
-          this.loved = false
-        } else {
-          this.love = false
-          this.loved = true
-        }
+        this.loveExist()
         console.log(this.article)
       }).catch(error => {
         console.log(error)
@@ -122,10 +116,12 @@ export default {
         url: 'http://localhost:8080/selectLoveExist',
         data: `user_id=${userId}&article_id=${this.article.id}`
       }).then(response => {
-        if (response.data !== null) {
-          return true
+        if (response.data == null) {
+          this.loved = false
+          this.love = true
         } else {
-          return false
+          this.loved = true
+          this.love = false
         }
       }).catch(error => {
         console.log(error)
