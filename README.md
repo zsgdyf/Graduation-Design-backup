@@ -102,4 +102,4 @@ List<Article> select(Integer user_id);
 
 # License
 
-### All Rights Reserved
+All Rights Reserved
