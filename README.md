@@ -94,12 +94,16 @@ List<Article> select(Integer user_id);
 
 - [ ] 笔记编辑功能
 
-- [ ] 用户信息显示
+- [x] 用户信息显示
 
-用户名、头像、个人简介、感兴趣的标签
+包括用户名、头像、个人简介、感兴趣的标签等等
 
-- [ ] 标签组件
+需要在数据库中添加相应字段
+
+- [x] 标签组件
+
+在文章底部和用户个人中心显示标签，标签添加入口暂定
 
 # License
 
-All Rights Reserved
+**All Rights Reserved**
