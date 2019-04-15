@@ -99,3 +99,7 @@ List<Article> select(Integer user_id);
 用户名、头像、个人简介、感兴趣的标签
 
 - [ ] 标签组件
+
+# License
+
+### All Rights Reserved
