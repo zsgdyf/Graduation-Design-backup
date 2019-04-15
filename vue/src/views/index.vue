@@ -69,7 +69,7 @@ export default {
     getLabels () {
       axios.get('http://localhost:8080/popularLabels').then(response => {
         this.labels = response.data
-      }).catche(error => {
+      }).catch(error => {
         console.log(error)
       })
     }
