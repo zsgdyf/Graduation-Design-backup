@@ -45,8 +45,8 @@ export default {
   data () {
     return {
       article: [],
-      love: '',
-      loved: '', // 为 true 时表示文章已被用户收藏
+      love: true,
+      loved: false, // 为 true 时表示文章已被用户收藏
       labels: []
     }
   },
@@ -55,8 +55,8 @@ export default {
       axios.get('http://localhost:8080/articles?id=' + this.$route.query.id).then(response => {
         this.article = response.data
         this.getTags()
-        this.loveExist()
         console.log(this.article)
+        this.loveExist()
       }).catch(error => {
         console.log(error)
       })
@@ -83,9 +83,9 @@ export default {
             message: response.data.message,
             type: 'success'
           })
+          this.loved = true
+          this.love = false
         }
-        this.loved = true
-        this.love = false
       }).catch(error => {
         console.log(error)
       })
@@ -101,9 +101,9 @@ export default {
         console.log(response)
         if (response.data.message === '取消收藏！') {
           this.$message(response.data.message)
+          this.loved = false
+          this.love = true
         }
-        this.loved = false
-        this.love = true
       }).catch(error => {
         console.log(error)
       })
@@ -116,12 +116,12 @@ export default {
         url: 'http://localhost:8080/selectLoveExist',
         data: `user_id=${userId}&article_id=${this.article.id}`
       }).then(response => {
-        if (response.data == null) {
-          this.loved = false
-          this.love = true
-        } else {
+        if (response.data === true) {
           this.loved = true
           this.love = false
+        } else {
+          this.loved = false
+          this.love = true
         }
       }).catch(error => {
         console.log(error)
