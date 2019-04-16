@@ -28,12 +28,12 @@ public interface ArticleMapper {
 
 	@Select("select * from article where id=#{id}")
 	Article selectOne(Integer id);
-	
+
 	@Select("select * from article where state='published'")
 	List<Article> selectPopular();
 
 	@Update("update article set "
-			+ "title=#{title},content=#{content}, content_md=#{content_md} "
+			+ "title=#{title},content=#{content}, content_md=#{content_md}"
 			+ "where id=#{id}")
-	Integer update(Integer id);
+	void update(String title, String content, String content_md, Integer id);
 }

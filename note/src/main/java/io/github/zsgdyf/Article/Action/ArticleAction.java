@@ -24,9 +24,9 @@ public class ArticleAction {
 		jsonObject.put("state", article2.getState());
 		return jsonObject;
 	}
-	
+
 	@RequestMapping(value = "/popularArticles")
-	public List<Article> selectPopular(){
+	public List<Article> selectPopular() {
 		return articleMapper.selectPopular();
 	}
 
@@ -39,12 +39,22 @@ public class ArticleAction {
 	public Article selectOne(Integer id) {
 		return articleMapper.selectOne(id);
 	}
-	
+
 	@RequestMapping(value = "/deleteArticle")
 	public Object delete(Integer id) {
 		articleMapper.delete(id);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("message", "已删除！");
+		return jsonObject;
+	}
+
+	@RequestMapping(value = "/updateArticle")
+	public Object updateAticle(@RequestBody String article) {
+		Article article2 = JSON.parseObject(article, Article.class);
+		articleMapper.update(article2.getTitle(), article2.getContent(),
+				article2.getContent_md(), article2.getId());
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("state", article2.getState());
 		return jsonObject;
 	}
 }

@@ -35,13 +35,13 @@ public class LoveArticleAction {
 	}
 
 	@RequestMapping(value = "/selectLoveExist")
-	public Object selectLoveExist(Integer user_id, Integer article_id) {
+	public Boolean selectLoveExist(Integer user_id, Integer article_id) {
 		LoveArticle loveArticle = loveArticleMapper.selectLoveExist(user_id,
 				article_id);
 		if (loveArticle != null) {
-			return loveArticle;
+			return true;
 		} else {
-			return null;
+			return false;
 		}
 	}
 
