@@ -104,6 +104,16 @@ List<Article> select(Integer user_id);
 
 在文章底部和用户个人中心显示标签，标签添加入口暂定
 
+- [ ] 首页文章收藏量显示
+
+- [ ] 热门标签下显示文章
+
+- [ ] 首页文章部分内容
+
+- [ ] 用户新增标签（笔记创建时）
+
+- [ ] 评论组件
+
 # License
 
 **All Rights Reserved**
