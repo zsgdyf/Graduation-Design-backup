@@ -119,7 +119,19 @@ getEditValue () {
 
 在文章底部和用户个人中心显示标签，标签添加入口暂定
 
-- [ ] 首页文章收藏量显示
+- [x] 首页文章收藏量显示
+
+给文章信息表增加一个收藏数（`love_count`）字段，用于在首页和需要的地方显示收藏量。
+
+并且在收藏和取消收藏时对该字段进行操作
+
+```java
+@Update("update article set love_count=love_count+1 where id=#{articleId}")
+void addLoveCount(Integer articleId);
+
+@Update("update article set love_count=love_count-1 where id=#{articleId}")
+void minusLoveCount(Integer articleId);
+```
 
 - [ ] 热门标签下显示文章
 
