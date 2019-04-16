@@ -57,8 +57,14 @@
           class="row-bg"
           justify="space-between"
         >
-          <span @click="toReset">忘记密码？</span>
-          <span @click="toRegister">还没有账号？点此注册</span>
+          <span
+            class="action"
+            @click="toReset"
+          >忘记密码？</span>
+          <span
+            class="action"
+            @click="toRegister"
+          >还没有账号？点此注册</span>
         </el-row>
       </el-card>
     </el-row>
@@ -120,7 +126,10 @@
             </el-row>
           </el-form-item>
         </el-form>
-        <p @click="toLogin">已有账号，点此登录</p>
+        <p
+          class="action"
+          @click="toLogin"
+        >已有账号，点此登录</p>
       </el-card>
     </el-row>
     <!-- 重置密码 -->
@@ -181,7 +190,10 @@
             </el-row>
           </el-form-item>
         </el-form>
-        <p @click="toLogin"  class="returnToLogin">返回登录</p>
+        <p
+          @click="toLogin"
+          class="action returnToLogin"
+        >返回登录</p>
       </el-card>
     </el-row>
   </div>
@@ -311,7 +323,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #add {
   width: 80%;
   margin: 0 auto;
@@ -330,7 +342,7 @@ export default {
   width: 30rem;
   margin: 1rem auto;
 }
-span {
+span.action {
   text-align: left;
   cursor: pointer;
   color: #606266;
@@ -341,8 +353,8 @@ p {
   cursor: pointer;
   color: #606266;
   text-decoration-line: underline;
-}
-p.returnToLogin {
-  text-align: left;
+  &.returnToLogin {
+    text-align: left;
+  }
 }
 </style>

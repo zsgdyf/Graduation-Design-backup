@@ -33,7 +33,10 @@
           <el-menu-item index="/myNotes">我的笔记</el-menu-item>
           <el-menu-item index="/myLove">我的收藏</el-menu-item>
           <el-menu-item index="/user">个人信息</el-menu-item>
-          <el-menu-item index="" @click="logout">注销登录</el-menu-item>
+          <el-menu-item
+            index=""
+            @click="logout"
+          >注销登录</el-menu-item>
         </el-submenu>
         <el-menu-item index="/users">用户列表</el-menu-item>
       </el-row>
@@ -69,7 +72,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss">
 #NavMenu {
   width: 100%;
   margin: 0 auto;

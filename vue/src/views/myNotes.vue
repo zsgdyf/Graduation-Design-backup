@@ -131,7 +131,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #myNotes {
   width: 80%;
   margin: 0 auto;
@@ -143,21 +143,25 @@ export default {
   width: 80%;
 }
 .radio {
-  margin-left: 38px;
-  margin-bottom: 0.5rem;
+  margin: {
+    left: 38px;
+    bottom: 0.6rem;
+  }
 }
 h4 {
   cursor: pointer;
   width: 85%;
 }
-span.action {
-  line-height: 3.5rem;
-  margin-left: 1rem;
-  cursor: pointer;
-  color: #409eff;
-}
-span.article-state {
-  font-weight: normal;
-  color: #909399;
+span {
+  &.action {
+    line-height: 3.5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: #409eff;
+  }
+  &.article-state {
+    font-weight: normal;
+    color: #909399;
+  }
 }
 </style>

@@ -198,21 +198,20 @@ export default {
   mounted () {
     console.log(this.simplemde)
     this.getEditValue()
-    // this.simplemde.togglePreview()
-  },
-  beforeRouteLeave (to, from, next) {
-    this.$confirm('当前正在编辑的笔记未保存，确认离开？', '提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
-    }).then(() => {
-      if (this.$confirm) {
-        next()
-      } else {
-        next(false)
-      }
-    })
   }
+  // beforeRouteLeave (to, from, next) {
+  //   this.$confirm('当前正在编辑的笔记未保存，确认离开？', '提示', {
+  //     confirmButtonText: '确定',
+  //     cancelButtonText: '取消',
+  //     type: 'warning'
+  //   }).then(() => {
+  //     if (this.$confirm) {
+  //       next()
+  //     } else {
+  //       next(false)
+  //     }
+  //   })
+  // }
 }
 </script>
 
