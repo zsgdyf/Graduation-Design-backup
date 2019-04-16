@@ -82,6 +82,8 @@ v-show="loved"
 
 - [ ] 发布按钮组
 
+增加笔记更新按钮
+
 - [x] 我的收藏页面
 
 通过建立用户和笔记的收藏关系表，方便查询某个用户收藏的所有文章
@@ -92,7 +94,20 @@ v-show="loved"
 List<Article> select(Integer user_id);
 ```
 
-- [ ] 笔记编辑功能
+- [x] 笔记编辑功能
+
+给编辑页面传入笔记 ID，从数据库中获取笔记标题和内容，填充到文本框中
+
+```javascript
+getEditValue () {
+      axios.get(`http://localhost:8080/articles?id=${this.$route.query.id}`).then(response => {
+        this.article.title = response.data.title
+        this.simplemde.value(response.data.content_md)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+```
 
 - [x] 用户信息显示
 
@@ -108,7 +123,7 @@ List<Article> select(Integer user_id);
 
 - [ ] 热门标签下显示文章
 
-- [ ] 首页文章部分内容
+- [ ] 首页文章显示部分内容
 
 - [ ] 用户新增标签（笔记创建时）
 
