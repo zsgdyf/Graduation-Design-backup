@@ -31,7 +31,10 @@
                   <h4 @click="toArticles(article.id)">{{article.id}}# {{article.title}}
                     <span class="article-state">{{(article.state==='draft') ? '【草稿】' : ''}}</span>
                   </h4>
-                  <span class="action">编辑</span>
+                  <span
+                    class="action"
+                    @click="editArticle(article.id)"
+                  >编辑</span>
                   <span
                     class="action"
                     @click="deleteConfirm(article.id)"
@@ -101,17 +104,24 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      })
-        .then(() => {
-          if (this.$confirm) {
-            this.deleteArticle(articleId)
-          }
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消删除'
-          })
+      }).then(() => {
+        if (this.$confirm) {
+          this.deleteArticle(articleId)
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消删除'
         })
+      })
+    },
+    editArticle (articleId) {
+      this.$router.push({
+        path: '/editor',
+        query: {
+          id: articleId
+        }
+      })
     }
   },
   created () {
@@ -146,7 +156,7 @@ span.action {
   cursor: pointer;
   color: #409eff;
 }
-span.article-state{
+span.article-state {
   font-weight: normal;
   color: #909399;
 }
