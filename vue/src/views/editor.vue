@@ -26,6 +26,10 @@
               type="primary"
               @click="publishConfirm"
             >发布</el-button>
+            <el-button
+              type="primary"
+              @click="updateConfirm"
+            >更新</el-button>
           </div>
         </div>
       </el-row>
@@ -125,6 +129,65 @@ export default {
       let currentDate = new Date()
       this.article.creat_time = currentDate.toLocaleString('zh', { hour12: false })
       this.article.creat_date = currentDate.toLocaleDateString()
+    },
+    getEditValue () {
+      axios.get(`http://localhost:8080/articles?id=${this.$route.query.id}`).then(response => {
+        this.article.title = response.data.title
+        this.simplemde.value(response.data.content_md)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    updateConfirm () {
+      this.$confirm('确认发布编辑后的笔记吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消，存入草稿箱',
+        type: 'warning'
+      }).then(() => {
+        if (this.$confirm) {
+          this.article.state = 'published'
+          this.update()
+        }
+      }).catch(() => {
+        this.$message({
+          message: '已存入草稿箱',
+          type: 'info'
+        })
+        this.article.state = 'draft'
+        this.update()
+      })
+    },
+    update () {
+      this.getArticleData()
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/updateArticle',
+        data: {
+          id: this.$route.query.id,
+          title: this.article.title,
+          content_md: this.content_md,
+          content: this.article.content,
+          author: this.article.author,
+          create_time: this.article.creat_time,
+          create_date: this.article.creat_date,
+          state: this.article.state
+        }
+      }).then(response => {
+        if (response.data.state === 'published') {
+          this.$message({
+            message: '发布成功！',
+            type: 'success'
+          })
+        } else if (response.data.state === 'draft') {
+          this.$message({
+            message: '已存入草稿箱',
+            type: 'info'
+          })
+        }
+        console.log(response)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   computed: {
@@ -134,6 +197,7 @@ export default {
   },
   mounted () {
     console.log(this.simplemde)
+    this.getEditValue()
     // this.simplemde.togglePreview()
   },
   beforeRouteLeave (to, from, next) {
