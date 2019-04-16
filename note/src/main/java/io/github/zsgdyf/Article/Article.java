@@ -9,6 +9,7 @@ public class Article {
 	private String create_time;
 	private String create_date;
 	private String state;
+	private Integer love_count;
 	/**
 	 * @return the id
 	 */
@@ -112,5 +113,17 @@ public class Article {
 	 */
 	public void setState(String state) {
 		this.state = state;
+	}
+	/**
+	 * @return the love_count
+	 */
+	public Integer getlove_count() {
+		return love_count;
+	}
+	/**
+	 * @param love_count the love_count to set
+	 */
+	public void setlove_count(Integer love_count) {
+		this.love_count = love_count;
 	}
 }

@@ -21,7 +21,12 @@
           <a target="_blank">
             <h4 @click="toArticle(article.id)">{{article.title}}</h4>
           </a>
-          <p class="author-info"><span>{{article.author}}</span> 于 <span>{{article.create_date}}</span></p>
+          <p class="author-info">
+            <span>{{article.author}}</span>
+            于
+            <span>{{article.create_date}}</span>
+            <span>收藏数：<span>{{article.love_count}}</span></span>
+          </p>
         </el-card>
       </el-card>
       <el-card

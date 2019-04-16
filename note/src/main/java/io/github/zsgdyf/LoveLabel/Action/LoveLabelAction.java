@@ -15,7 +15,7 @@ public class LoveLabelAction{
 	private LoveLabelMapper loveLabelMapper;
 	
 	@RequestMapping(value = "/getUserLabel")
-	List<Label> getUserLabel(Integer userId) {
+	public List<Label> getUserLabel(Integer userId) {
 		return loveLabelMapper.findLabelByUserId(userId);
 	}
 }

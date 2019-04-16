@@ -58,7 +58,8 @@ export default {
         author: '',
         creat_time: '',
         creat_date: '',
-        state: ''
+        state: '',
+        loveCount: 0
       },
       content_md: '',
       configs: {
@@ -104,7 +105,8 @@ export default {
           author: this.article.author,
           create_time: this.article.creat_time,
           create_date: this.article.creat_date,
-          state: this.article.state
+          state: this.article.state,
+          loveCount: this.article.loveCount
         }
       }).then(response => {
         if (response.data.state === 'published') {
@@ -170,7 +172,8 @@ export default {
           author: this.article.author,
           create_time: this.article.creat_time,
           create_date: this.article.creat_date,
-          state: this.article.state
+          state: this.article.state,
+          loveCount: this.article.loveCount
         }
       }).then(response => {
         if (response.data.state === 'published') {

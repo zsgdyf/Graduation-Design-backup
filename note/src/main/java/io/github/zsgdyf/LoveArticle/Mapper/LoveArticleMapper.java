@@ -31,4 +31,7 @@ public interface LoveArticleMapper {
 	@Delete("delete from love_article "
 			+ "where user_id=#{user_id} and article_id=#{article_id}")
 	void delete(Integer user_id, Integer article_id);
+	
+//	@Select("select count(1) from love_article where article_id=#{articleId}")
+//	Integer getLoveNumber(Integer articleId);
 }

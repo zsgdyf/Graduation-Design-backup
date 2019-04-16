@@ -13,9 +13,9 @@ import io.github.zsgdyf.Article.Article;;
 @Mapper
 public interface ArticleMapper {
 	@Insert("insert into article "
-			+ "(title,content,content_md,author,create_time,create_date,state) "
+			+ "(title,content,content_md,author,create_time,create_date,state,love_count) "
 			+ "values "
-			+ "(#{title},#{content},#{content_md},#{author},#{create_time},#{create_date},#{state})")
+			+ "(#{title},#{content},#{content_md},#{author},#{create_time},#{create_date},#{state},#{love_count})")
 	// 获取自增长的主键值
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
 	void insert(Article article);
@@ -36,4 +36,10 @@ public interface ArticleMapper {
 			+ "title=#{title},content=#{content}, content_md=#{content_md}"
 			+ "where id=#{id}")
 	void update(String title, String content, String content_md, Integer id);
+
+	@Update("update article set love_count=love_count+1 where id=#{articleId}")
+	void addLoveCount(Integer articleId);
+
+	@Update("update article set love_count=love_count-1 where id=#{articleId}")
+	void minusLoveCount(Integer articleId);
 }

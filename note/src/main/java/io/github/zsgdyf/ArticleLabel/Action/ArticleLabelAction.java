@@ -16,12 +16,12 @@ public class ArticleLabelAction {
 	private ArticleLabelMapper articleLabelMapper;
 
 	@RequestMapping(value = "/getLabel")
-	List<Label> getLabel(Integer articleId) {
+	public List<Label> getLabel(Integer articleId) {
 		return articleLabelMapper.findLabelByArticleId(articleId);
 	}
 
 	@RequestMapping(value = "/addLabel")
-	void addLabel(ArticleLabel articleLabel) {
+	public void addLabel(ArticleLabel articleLabel) {
 		articleLabelMapper.insert(articleLabel);
 	}
 }

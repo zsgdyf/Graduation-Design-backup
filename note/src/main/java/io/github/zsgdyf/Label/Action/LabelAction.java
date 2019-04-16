@@ -17,7 +17,7 @@ public class LabelAction{
 	private LabelMapper labelMapper;
 	
 	@RequestMapping(value = "/popularLabels")
-	List<Label> getAllLabel(){
+	public List<Label> getAllLabel(){
 		return labelMapper.getAllLabel();
 	}
 }
