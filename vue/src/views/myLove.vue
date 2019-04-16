@@ -20,7 +20,7 @@
             <el-timeline-item
               v-for="(article,index) in articles"
               :key="index"
-              :timestamp="article.create_date"
+              :timestamp="loveArticle[index].love_date"
               placement="top"
             >
               <el-card>
@@ -94,10 +94,21 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    getUserLove () {
+      let userId = window.localStorage.userId
+      axios.get(`http://localhost:8080/selectUserLove?user_id=${userId}`).then(response => {
+        this.loveArticle = response.data
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   created () {
     this.getData()
+  },
+  mounted () {
+    this.getUserLove()
   }
 }
 </script>
