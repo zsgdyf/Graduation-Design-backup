@@ -5,6 +5,7 @@
       <h1>{{article.title}}</h1>
       <p class="author-info">作者：{{article.author}}&nbsp;&nbsp;
         发布于：{{article.create_time}}
+        &nbsp;&nbsp;收藏数：{{article.love_count}}
         <span
           @click="loveArticle"
           class="action"
@@ -85,6 +86,7 @@ export default {
           })
           this.loved = true
           this.love = false
+          this.getArticle()
         }
       }).catch(error => {
         console.log(error)
@@ -103,6 +105,7 @@ export default {
           this.$message(response.data.message)
           this.loved = false
           this.love = true
+          this.getArticle()
         }
       }).catch(error => {
         console.log(error)
