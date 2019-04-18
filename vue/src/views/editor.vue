@@ -143,7 +143,7 @@ export default {
     updateConfirm () {
       this.$confirm('确认发布编辑后的笔记吗？', '提示', {
         confirmButtonText: '确定',
-        cancelButtonText: '取消，存入草稿箱',
+        cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         if (this.$confirm) {
@@ -152,10 +152,10 @@ export default {
         }
       }).catch(() => {
         this.$message({
-          message: '已存入草稿箱',
+          message: '已取消',
           type: 'info'
         })
-        this.article.state = 'draft'
+        // this.article.state = 'draft'
         this.update()
       })
     },
@@ -200,7 +200,9 @@ export default {
   },
   mounted () {
     console.log(this.simplemde)
-    this.getEditValue()
+    if (this.$route.query.id) {
+      this.getEditValue()
+    }
   }
   // beforeRouteLeave (to, from, next) {
   //   this.$confirm('当前正在编辑的笔记未保存，确认离开？', '提示', {

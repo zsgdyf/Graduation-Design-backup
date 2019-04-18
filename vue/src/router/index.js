@@ -42,6 +42,7 @@ const routes = [{
 
 export default new VueRouter({
   routes,
+  // 浏览器后退时保持滚动条原有位置
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       console.log(savedPosition)

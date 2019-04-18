@@ -97,7 +97,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #userInfo {
   width: 80%;
   margin: 0 auto;
@@ -110,9 +110,9 @@ export default {
 }
 .info-content {
   padding-left: 2rem;
-}
-p {
-  margin-bottom: 2rem;
+  p {
+    margin-bottom: 2rem;
+  }
 }
 .el-tag {
   margin-left: 0.6rem;
@@ -121,9 +121,9 @@ p {
   border: 2px dashed #d9d9d9;
   border-radius: 6px;
   cursor: pointer;
-}
-.el-upload:hover {
-  border-color: #409eff;
+  &:hover {
+    border-color: #409eff;
+  }
 }
 .avatar-uploader-icon {
   font-size: 28px;
