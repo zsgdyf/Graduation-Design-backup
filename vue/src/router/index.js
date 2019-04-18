@@ -48,7 +48,7 @@ export default new VueRouter({
       console.log(savedPosition)
       setTimeout(() => {
         window.scrollTo(savedPosition.x, savedPosition.y)
-      }, 270)
+      }, 270) // 这个数字试了很多次，250 不滚动，300+ 有延时
     }
   }
 })
