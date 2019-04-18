@@ -39,6 +39,15 @@ const routes = [{
   path: '/myLove',
   component: MyLove
 }]
+
 export default new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      console.log(savedPosition)
+      setTimeout(() => {
+        window.scrollTo(savedPosition.x, savedPosition.y)
+      }, 270)
+    }
+  }
 })
