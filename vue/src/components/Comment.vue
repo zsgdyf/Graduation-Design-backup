@@ -28,6 +28,8 @@ export default {
     left: 2rem;
     bottom: 2rem;
   }
+// 多行输入框字体会继承浏览器默认样式
+// 需重新覆盖一次全局字体
   .el-textarea__inner {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
   }
