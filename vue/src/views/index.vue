@@ -19,13 +19,20 @@
           :body-style="{padding: '10px'}"
         >
           <a target="_blank">
-            <h4 @click="toArticle(article.id)">{{article.title}}</h4>
+            <h3 @click="toArticle(article.id)">{{article.title}}</h3>
           </a>
           <p class="author-info">
-            <span>{{article.author}}</span>
-            于
-            <span>{{article.create_date}}</span>
+            <span>{{article.author}}</span>&nbsp;
+            发布于&nbsp;
+            <span>{{article.create_date}}</span>&nbsp;
             <span>收藏数：<span>{{article.love_count}}</span></span>
+          </p>
+          <p class="content-part">
+            <vue-markdown :source="contentPart[index]"></vue-markdown>
+            <span
+              class="action"
+              @click="toArticle(article.id)"
+            >查看全文>></span>
           </p>
         </el-card>
       </el-card>
@@ -45,20 +52,25 @@
 <script>
 import axios from 'axios'
 import NavMenu from '@/components/NavMenu.vue'
+import VueMarkdown from 'vue-markdown'
 export default {
   components: {
-    NavMenu
+    NavMenu,
+    VueMarkdown
   },
   data () {
     return {
       articles: [],
-      labels: []
+      labels: [],
+      contentPart: []
     }
   },
   methods: {
     getArticles () {
       axios.get('http://localhost:8080/popularArticles').then(response => {
         this.articles = response.data
+        this.getContentPart()
+        console.log(this.contentPart)
       }).catch(error => {
         console.log(error)
       })
@@ -77,6 +89,15 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    getContentPart () {
+      this.articles.forEach((article, index) => {
+        if (article.content_md.length <= 50) {
+          this.contentPart[index] = article.content_md
+        } else {
+          this.contentPart[index] = article.content_md.slice(0, 51)
+        }
+      })
     }
   },
   created () {
@@ -87,32 +108,43 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #index {
   width: 80%;
   margin: 0 auto;
 }
-.el-card.articles {
-  margin: 0.8rem;
-  width: 50rem;
-}
-.el-card.labels {
-  width: 20%;
-  margin: 0.8rem;
-  height: 15rem;
-}
-.el-card.articles-content {
-  margin-bottom: 0.5rem;
+.el-card {
+  &.articles {
+    margin: 0.8rem;
+    width: 50rem;
+  }
+  &.labels {
+    width: 20%;
+    margin: 0.8rem;
+    height: 15rem;
+  }
+  &.articles-content {
+    margin-bottom: 0.5rem;
+  }
 }
 .author-info {
   color: #909399;
   font-size: 0.9rem;
 }
-h4 {
+h3 {
   cursor: pointer;
 }
 .el-tag {
   margin-left: 0.6rem;
   margin-bottom: 0.5rem;
+}
+span {
+  &.action {
+    cursor: pointer;
+    color: #409eff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 </style>
