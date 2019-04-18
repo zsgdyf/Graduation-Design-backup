@@ -135,7 +135,23 @@ void minusLoveCount(Integer articleId);
 
 - [ ] 热门标签下显示文章
 
-- [ ] 首页文章显示部分内容
+- [x] 首页文章显示部分内容
+
+截取笔记内容的前 50 个字符，若笔记不足 50 个字符则显示全部
+
+```javascript
+getContentPart () {
+      this.articles.forEach((article, index) => {
+        if (article.content_md.length <= 50) {
+          this.contentPart[index] = article.content_md
+        } else {
+          this.contentPart[index] = article.content_md.slice(0, 51)
+        }
+      })
+    }
+```
+
+添加「查看全文」按钮
 
 - [ ] 用户新增标签（笔记创建时）
 
