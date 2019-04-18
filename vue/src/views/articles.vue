@@ -28,6 +28,7 @@
         >{{label.content}}</el-tag>
       </div>
     </div>
+    <Comment></Comment>
   </div>
 </template>
 
@@ -37,11 +38,13 @@ import VueMarkdown from 'vue-markdown'
 import Prism from 'prismjs'
 import NavMenu from '@/components/NavMenu.vue'
 import SideNavMenu from '@/components/SideNavMenu.vue'
+import Comment from '@/components/Comment.vue'
 export default {
   components: {
     NavMenu,
     SideNavMenu,
-    VueMarkdown
+    VueMarkdown,
+    Comment
   },
   data () {
     return {
