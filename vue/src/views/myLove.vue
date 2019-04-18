@@ -24,6 +24,7 @@
               placement="top"
             >
               <el-card>
+                <p>收藏于 {{loveArticle[index].love_time}}</p>
                 <el-row
                   type="flex"
                   class="row-bg"
