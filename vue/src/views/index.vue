@@ -30,7 +30,7 @@
           <p class="content-part">
             <vue-markdown :source="contentPart[index]"></vue-markdown>
             <span
-              class="action"
+              class="index-action"
               @click="toArticle(article.id)"
             >查看全文>></span>
           </p>
@@ -139,7 +139,7 @@ h3 {
   margin-bottom: 0.5rem;
 }
 span {
-  &.action {
+  &.index-action {
     cursor: pointer;
     color: #409eff;
     &:hover {
