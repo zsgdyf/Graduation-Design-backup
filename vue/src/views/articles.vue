@@ -28,6 +28,7 @@
         >{{label.content}}</el-tag>
       </div>
     </div>
+    <!-- <hr> -->
     <Comment></Comment>
   </div>
 </template>
@@ -150,13 +151,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #articles {
   width: 80%;
   margin: 0 auto;
-}
-.article-content {
-  margin-left: 2rem;
+  .article-content {
+    margin-left: 2rem;
+  }
 }
 p.author-info {
   color: #909399;
@@ -170,9 +171,14 @@ span.action {
 .tags {
   margin-bottom: 2rem;
   margin-top: 1rem;
+  .el-tag {
+    margin-left: 0.6rem;
+  }
 }
-.el-tag {
-  margin-left: 0.6rem;
+hr {
+  border: none;
+  height: 0.8px;
+  background-color:#C0C4CC
 }
 code {
   color: black;

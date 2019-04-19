@@ -1,5 +1,7 @@
 package io.github.zsgdyf.Comment.Mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -16,4 +18,7 @@ public interface CommentMapper {
 
 	@Delete("delete from comment where id=#{id}")
 	void delete(Integer id);
+	
+	@Select("select * from comment")
+	List<Comment> selectAll();
 }

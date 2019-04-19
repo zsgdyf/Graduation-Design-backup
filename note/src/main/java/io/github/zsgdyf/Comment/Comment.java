@@ -2,7 +2,7 @@ package io.github.zsgdyf.Comment;
 
 public class Comment {
 	private Integer id;
-	private String comment;
+	private String content;
 	private String author;
 	private String createTime;
 	/**
@@ -21,15 +21,15 @@ public class Comment {
 	/**
 	 * @return the comment
 	 */
-	public String getComment() {
-		return comment;
+	public String getContent() {
+		return content;
 	}
 	/**
 	 * @param comment
 	 *            the comment to set
 	 */
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setContent(String comment) {
+		this.content = comment;
 	}
 	/**
 	 * @return the author
