@@ -1,6 +1,6 @@
 <template>
   <div id="add">
-    <NavMenu :userName="user.name"></NavMenu>
+    <NavMenu></NavMenu>
     <!-- 卡片居中 登录部分 -->
     <el-row
       type="flex"
