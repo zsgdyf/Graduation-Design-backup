@@ -28,6 +28,10 @@
       >
         <vue-markdown :source="item.content"></vue-markdown>
         <span class="author">{{item.author}} </span><span class="create-time">评论于 {{item.createTime}}</span>
+        <span
+          class="action"
+          @click="deleteComment(item.id)"
+        >删除</span>
       </el-card>
     </div>
   </div>
@@ -36,10 +40,12 @@
 <script>
 import axios from 'axios'
 import VueMarkdown from 'vue-markdown'
+import { setTimeout } from 'timers'
 export default {
   components: {
     VueMarkdown
   },
+  props: { articleId: Number },
   data () {
     return {
       comment: '',
@@ -58,10 +64,11 @@ export default {
         data: {
           author: author,
           content: content,
-          createTime: createTime
+          createTime: createTime,
+          articleId: this.articleId
         }
       }).then(response => {
-        if (response.data.message === "发布成功！") {
+        if (response.data.message === '发布成功！') {
           this.$message({
             message: '发布成功！',
             type: 'success'
@@ -73,16 +80,32 @@ export default {
       })
     },
     getData () {
-      axios.get('http://localhost:8080/getAllComment').then(response => {
+      axios.get(`http://localhost:8080/getCommentByArticleId?articleId=${this.articleId}`).then(response => {
         this.comments = response.data
         this.comments.reverse()
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    deleteComment (id) {
+      axios.get(`http://localhost:8080/deleteComment?id=${id}`).then(response => {
+        if (response.data.message === '删除成功！') {
+          this.$message({
+            message: '删除成功！',
+            type: 'success'
+          })
+        }
+        this.getData()
       }).catch(error => {
         console.log(error)
       })
     }
   },
   mounted () {
-    this.getData()
+    // 如果不延时执行的话 this.articleId 会取不到数据（为 undefined）
+    setTimeout(() => {
+      this.getData()
+    }, 100)
   }
 }
 </script>
