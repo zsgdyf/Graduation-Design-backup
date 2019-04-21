@@ -5,6 +5,7 @@ public class Comment {
 	private String content;
 	private String author;
 	private String createTime;
+	private Integer articleId;
 	/**
 	 * @return the id
 	 */
@@ -56,5 +57,17 @@ public class Comment {
 	 */
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	/**
+	 * @return the articleId
+	 */
+	public Integer getArticleId() {
+		return articleId;
+	}
+	/**
+	 * @param articleId the articleId to set
+	 */
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
 	}
 }

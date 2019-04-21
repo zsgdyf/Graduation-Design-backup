@@ -31,4 +31,17 @@ public class CommentAction {
 	public List<Comment> getAllComment() {
 		return commentMapper.selectAll();
 	}
+	
+	@RequestMapping(value="/deleteComment")
+	public Object deleteComment(Integer id) {
+		commentMapper.delete(id);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("message", "删除成功！");
+		return jsonObject;
+	}
+	
+	@RequestMapping(value="/getCommentByArticleId")
+	public List<Comment> getCommentByArticleId(Integer articleId){
+		return commentMapper.selectCommentByArticleId(articleId);
+	}
 }

@@ -11,8 +11,8 @@ import io.github.zsgdyf.Comment.Comment;
 
 @Mapper
 public interface CommentMapper {
-	@Select("insert into comment (content, author, createTime) "
-			+ "values (#{content},#{author},#{createTime})")
+	@Select("insert into comment (content, author, createTime,articleId) "
+			+ "values (#{content},#{author},#{createTime},#{articleId})")
 	@Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
 	void insert(Comment comment);
 
@@ -21,4 +21,7 @@ public interface CommentMapper {
 	
 	@Select("select * from comment")
 	List<Comment> selectAll();
+	
+	@Select("select * from comment where articleId = #{articleId}")
+	List<Comment> selectCommentByArticleId(Integer articleId);
 }
