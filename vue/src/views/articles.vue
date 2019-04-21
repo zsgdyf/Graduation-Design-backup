@@ -29,7 +29,7 @@
       </div>
     </div>
     <!-- <hr> -->
-    <Comment></Comment>
+    <Comment :articleId="article.id"></Comment>
   </div>
 </template>
 
@@ -178,7 +178,7 @@ span.action {
 hr {
   border: none;
   height: 0.8px;
-  background-color:#C0C4CC
+  background-color: #c0c4cc;
 }
 code {
   color: black;
