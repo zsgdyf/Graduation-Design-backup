@@ -29,7 +29,8 @@ public interface ArticleMapper {
 	@Select("select * from article where id=#{id}")
 	Article selectOne(Integer id);
 
-	@Select("select * from article where state='published' order by love_count desc")
+	@Select("select * from article where state='published' "
+			+ "order by love_count desc")
 	List<Article> selectPopular();
 
 	@Update("update article set "
