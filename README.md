@@ -61,6 +61,13 @@ Article selectOne(Integer id);
 
 - [x] 首页文章显示
 
+首页热门文章按收藏量排序
+
+```java
+	@Select("select * from article where state='published' order by love_count desc")
+	List<Article> selectPopular();
+```
+
 - [x] 文章详情页面添加收藏功能
 
 可切换的文本链接，可以在「收藏」和「已收藏」之间切换
