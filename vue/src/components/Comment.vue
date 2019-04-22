@@ -103,6 +103,7 @@ export default {
   },
   mounted () {
     // 如果不延时执行的话 this.articleId 会取不到数据（为 undefined）
+    // 暂不清楚原因
     setTimeout(() => {
       this.getData()
     }, 100)
