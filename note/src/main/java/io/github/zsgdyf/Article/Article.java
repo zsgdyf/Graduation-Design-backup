@@ -82,7 +82,7 @@ public class Article {
 		return create_time;
 	}
 	/**
-	 * @param creat_time
+	 * @param create_time
 	 *            the creat_time to set
 	 */
 	public void setCreate_time(String create_time) {

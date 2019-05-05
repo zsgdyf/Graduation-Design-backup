@@ -15,6 +15,7 @@ import io.github.zsgdyf.User.Mapper.UserMapper;
 
 @RestController
 public class UserAction {
+	// 不推荐使用 field 注入，应使用构造器注入
 	@Autowired
 	private UserMapper UserMapper;
 
@@ -35,7 +36,7 @@ public class UserAction {
 		return UserMapper.selectById(id);
 	}
 
-	public User selectByName(String name) {
+	private User selectByName(String name) {
 		return UserMapper.selectByName(name);
 	}
 
@@ -54,7 +55,7 @@ public class UserAction {
 		UserMapper.update(User);
 	}
 
-	public boolean comparePassword(User user, User userInDatabase) {
+	private boolean comparePassword(User user, User userInDatabase) {
 		return user.getPassword().equals(userInDatabase.getPassword());
 	}
 
