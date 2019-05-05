@@ -19,6 +19,7 @@
     "element-ui": "^2.5.4",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.15.6",
+    "node-sass": "^4.12.0",
     "prismjs": "^1.16.0",
     "vue": "^2.5.2",
     "vue-markdown": "^2.2.4",
