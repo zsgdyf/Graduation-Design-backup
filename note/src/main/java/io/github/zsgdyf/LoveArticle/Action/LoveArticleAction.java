@@ -17,6 +17,7 @@ import io.github.zsgdyf.LoveArticle.Mapper.LoveArticleMapper;
 
 @RestController
 public class LoveArticleAction {
+	// 不推荐使用 filed 注入，重构使用构造器注入
 	@Autowired
 	private LoveArticleMapper loveArticleMapper;
 	@Autowired

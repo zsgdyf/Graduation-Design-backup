@@ -8,8 +8,10 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import io.github.zsgdyf.Comment.Comment;
+import org.springframework.stereotype.Service;
 
 @Mapper
+@Service
 public interface CommentMapper {
 	@Select("insert into comment (content, author, createTime,articleId) "
 			+ "values (#{content},#{author},#{createTime},#{articleId})")

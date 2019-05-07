@@ -8,9 +8,11 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import io.github.zsgdyf.Article.Article;;
+import io.github.zsgdyf.Article.Article;
+import org.springframework.stereotype.Service;;
 
 @Mapper
+@Service
 public interface ArticleMapper {
 	@Insert("insert into article "
 			+ "(title,content,content_md,author,create_time,create_date,state,love_count) "

@@ -8,8 +8,11 @@ import org.apache.ibatis.annotations.Select;
 
 import io.github.zsgdyf.ArticleLabel.ArticleLabel;
 import io.github.zsgdyf.Label.Label;
+import org.springframework.stereotype.Service;
 
 @Mapper
+@Service
+
 public interface ArticleLabelMapper {
 	@Select("select * from label where id in "
 			+ "(select label_id from article_label where article_id=#{articleId})")

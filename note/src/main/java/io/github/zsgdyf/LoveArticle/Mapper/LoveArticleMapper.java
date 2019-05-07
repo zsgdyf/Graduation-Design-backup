@@ -9,8 +9,10 @@ import org.apache.ibatis.annotations.Select;
 
 import io.github.zsgdyf.Article.Article;
 import io.github.zsgdyf.LoveArticle.LoveArticle;
+import org.springframework.stereotype.Service;
 
 @Mapper
+@Service
 public interface LoveArticleMapper {
 	@Insert("insert into love_article "
 			+ "(user_id, article_id, love_time,love_date) "

@@ -92,10 +92,10 @@ export default {
     },
     getContentPart () {
       this.articles.forEach((article, index) => {
-        if (article.content_md.length <= 50) {
+        if (article.content_md.length <= 100) {
           this.contentPart[index] = article.content_md
         } else {
-          this.contentPart[index] = article.content_md.slice(0, 51)
+          this.contentPart[index] = article.content_md.slice(0, 101)
         }
       })
     }

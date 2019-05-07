@@ -15,62 +15,63 @@ import io.github.zsgdyf.User.Mapper.UserMapper;
 
 @RestController
 public class UserAction {
-	@Autowired
-	private UserMapper UserMapper;
+    // 不推荐使用 filed 注入，重构使用构造器注入
+    @Autowired
+    private UserMapper UserMapper;
 
-	@RequestMapping(value = "/insert")
-	public Object insert(User User) {
-		if (UserMapper.selectByName(User.getName()) != null) {
-			JSONObject jsonobject = new JSONObject();
-			jsonobject.put("message", "用户名已被使用！");
-			return jsonobject;
-		} else {
-			UserMapper.insert(User);
-			return UserMapper.selectByName(User.getName());
-		}
-	}
+    @RequestMapping(value = "/insert")
+    public Object insert(User User) {
+        if (UserMapper.selectByName(User.getName()) != null) {
+            JSONObject jsonobject = new JSONObject();
+            jsonobject.put("message", "用户名已被使用！");
+            return jsonobject;
+        } else {
+            UserMapper.insert(User);
+            return UserMapper.selectByName(User.getName());
+        }
+    }
 
-	@RequestMapping(value = "/selectById")
-	public User selectById(@RequestParam Integer id) {
-		return UserMapper.selectById(id);
-	}
+    @RequestMapping(value = "/selectById")
+    public User selectById(@RequestParam Integer id) {
+        return UserMapper.selectById(id);
+    }
 
-	public User selectByName(String name) {
-		return UserMapper.selectByName(name);
-	}
+    private User selectByName(String name) {
+        return UserMapper.selectByName(name);
+    }
 
-	@RequestMapping(value = "/selectAll")
-	public List<User> selectAll() {
-		return UserMapper.selectAll();
-	}
+    @RequestMapping(value = "/selectAll")
+    public List<User> selectAll() {
+        return UserMapper.selectAll();
+    }
 
-	@RequestMapping("/delete")
-	public void delete(Integer id) {
-		UserMapper.delete(id);
-	}
+    @RequestMapping("/delete")
+    public void delete(Integer id) {
+        UserMapper.delete(id);
+    }
 
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public void update(@RequestParam User User) {
-		UserMapper.update(User);
-	}
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public void update(@RequestParam User User) {
+        UserMapper.update(User);
+    }
 
-	public boolean comparePassword(User user, User userInDatabase) {
-		return user.getPassword().equals(userInDatabase.getPassword());
-	}
+    private boolean comparePassword(User user, User userInDatabase) {
+        return user.getPassword().equals(userInDatabase.getPassword());
+    }
 
-	@RequestMapping(value = "/login")
-	public Object login(User user) {
-		User userInDatabase = selectByName(user.getName());
-		JSONObject jsonObject = new JSONObject();
-		if (userInDatabase == null) {
-			jsonObject.put("message", "用户不存在！");
-		} else if (!comparePassword(user, userInDatabase)) {
-			jsonObject.put("message", "密码错误！");
-		} else {
-			String token = AuthenticationService.getToken(userInDatabase);
-			jsonObject.put("token", token);
-			jsonObject.put("user", userInDatabase);
-		}
-		return jsonObject;
-	}
+    @RequestMapping(value = "/login")
+    public Object login(User user) {
+        User userInDatabase = selectByName(user.getName());
+        JSONObject jsonObject = new JSONObject();
+        if (userInDatabase == null) {
+            jsonObject.put("message", "用户不存在！");
+        } else if (!comparePassword(user, userInDatabase)) {
+            jsonObject.put("message", "密码错误！");
+        } else {
+            String token = AuthenticationService.getToken(userInDatabase);
+            jsonObject.put("token", token);
+            jsonObject.put("user", userInDatabase);
+        }
+        return jsonObject;
+    }
 }
